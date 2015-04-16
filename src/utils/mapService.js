@@ -24,6 +24,14 @@ function parseGO(argument) {
   return data;
 }
 
+// allow to revert coordinates
+function parseCoords(string) {
+  let originalGeometry = string.split(',');
+  return originalGeometry.map((el, i, arr) => {
+    return arr[arr.length - 1 - i];
+  });
+}
+
 export default class mapService {
   constructor(props) {
     props = props || {};
@@ -49,6 +57,35 @@ export default class mapService {
 
   flushMap() {
     this.provider.geoObjects.removeAll();
+    return this;
+  }
+
+  flushMapByGOName(name){
+    this.provider.geoObjects.each((go) => {
+      if(go.options.getName() === name){
+        go.destroy();
+      }
+    });
+    return this;
+  }
+
+  renderRoute(routeData) {
+    var refPoints = [];
+    routeData = JSON.parse(routeData);
+
+    routeData.map((el) => {
+      refPoints.push(parseCoords(el.coordinates));
+    });
+
+    let multiRoute = new ymaps.multiRouter.MultiRoute({
+      referencePoints: refPoints,
+      params: {
+        routingMode: 'masstransit'
+      }
+    });
+
+    this.provider.geoObjects.add(multiRoute);
+
     return this;
   }
 

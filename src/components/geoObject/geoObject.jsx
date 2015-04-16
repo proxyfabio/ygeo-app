@@ -26,9 +26,9 @@ export default class geoObject extends React.Component {
       </div>
       <div className="geoObject__footer">
         <div className="geoObject__routes">
-          <div className="geoObject__route route__car">На авто</div>
-          <div className="geoObject__route route__walk">Пешком</div>
-          <div className="geoObject__route route__bus">Общественным транспортом</div>
+          <div className="geoObject__route route__car"><Link to="route" params={{rId: 'route_auto'}}>На авто</Link></div>
+          <div className="geoObject__route route__walk"><Link to="route" params={{rId: 'route_walk'}}>Пешком</Link></div>
+          <div className="geoObject__route route__bus"><Link to="route" params={{rId: 'route_bus'}}>Общественным транспортом</Link></div>
         </div>
       </div>
     </figure>;

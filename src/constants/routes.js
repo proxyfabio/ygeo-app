@@ -1,3 +1,4 @@
 export default {
-  go: '/go/'
-}
+  go: '/go/',
+  route: '/route/'
+};

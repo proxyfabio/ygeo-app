@@ -1,9 +1,9 @@
 'use strict';
 
-import Store from '../core/store.js'
-import Dispatcher from '../core/dispatcher.js'
-import ActionTypes from '../constants/actions.js'
-import ICollection from './models/geoObjects.js'
+import Store from '../core/store.js';
+import Dispatcher from '../core/dispatcher.js';
+import ActionTypes from '../constants/actions.js';
+import ICollection from './models/geoObjects.js';
 
 var iState = ICollection;
 class GeoObjectsStore extends Store {
@@ -30,4 +30,4 @@ GOStore.dispatchToken = Dispatcher.register(function(payload) {
   return true;
 });
 
-export default GOStore
+export default GOStore;
