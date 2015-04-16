@@ -61,9 +61,12 @@ export default class mapService {
   }
 
   flushMapByGOName(name){
-    this.provider.geoObjects.each((go) => {
-      if(go.options.getName() === name){
-        go.destroy();
+    let GOs = this.provider.geoObjects;
+    GOs.each((go) => {
+      if(go && go.options.getName() === name){
+        if(GOs === go.getParent()){
+          GOs.remove(go);
+        }
       }
     });
     return this;
