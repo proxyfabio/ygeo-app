@@ -1,4 +1,5 @@
 export default {
   go: '/go/',
-  route: '/route/'
+  route: '/route/',
+  search: '/search/'
 };

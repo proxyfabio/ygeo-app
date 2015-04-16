@@ -1,6 +1,6 @@
 'use strict';
-import Dispatcher from '../core/dispatcher.js'
-import ActionTypes from '../constants/actions.js'
+import Dispatcher from '../core/dispatcher.js';
+import ActionTypes from '../constants/actions.js';
 
 export default {
   getGeoObject(data) {
@@ -8,5 +8,12 @@ export default {
       data: data.results,
       actionType: ActionTypes.GO_GET
     });
+  },
+
+  didSearchGeoObjects(data) {
+    Dispatcher.handleServerAction({
+      data: data.results,
+      actionType: ActionTypes.GO_SEARCH
+    });
   }
-}
+};

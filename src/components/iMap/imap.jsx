@@ -44,13 +44,10 @@ export default React.createClass({
   render(){
     let styles = 'map';
     let routerParams = this.context.router.getCurrentParams();
+    let routerPath = this.context.router.getCurrentPath();
 
-    if(routerParams.goId){
+    if(routerParams.goId || routerPath.match('/search/')){
       styles += ' inactive';
-    }
-
-    if(routerParams.rId){
-      console.log(this);
     }
 
     return <section className={styles}>

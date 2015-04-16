@@ -21,6 +21,10 @@ export default {
     });
   }),
 
+  searchGeoObject: ActionCreator.create(function(query){
+    API.searchGeoObject(query);
+  }),
+
   showActivegeoObjectsCollection: ActionCreator.create((data) => {
     Dispatcher.handleViewAction({
       id: data.id,
