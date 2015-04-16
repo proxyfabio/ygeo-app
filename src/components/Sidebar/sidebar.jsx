@@ -2,6 +2,7 @@
 import './sidebar.styl';
 import React from 'react';
 import {MapLegendSection} from '../MapLegendSection/mapLegendSection.jsx';
+import {Clock} from '../iClock/iclock.jsx';
 import {Link} from 'react-router';
 
 export class Sidebar extends React.Component {
@@ -20,6 +21,7 @@ export class Sidebar extends React.Component {
 
     return <aside className="sidebar">
       <Link to="search">Искать</Link>
+      <Clock Interval="30000" />
       <h2>Места</h2>
       <section className="mapLegendSection">
         {Object.keys(_groups).map((key) => {

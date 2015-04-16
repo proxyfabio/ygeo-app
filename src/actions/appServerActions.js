@@ -15,5 +15,12 @@ export default {
       data: data.results,
       actionType: ActionTypes.GO_SEARCH
     });
+  },
+
+  didGetTime(data) {
+    Dispatcher.handleServerAction({
+      data: data.object,
+      actionType: ActionTypes.TIME
+    });
   }
 };

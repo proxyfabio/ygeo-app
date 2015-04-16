@@ -21,7 +21,7 @@ export default {
     });
   }),
 
-  searchGeoObject: ActionCreator.create(function(query){
+  searchGeoObject: ActionCreator.create(function(query) {
     API.searchGeoObject(query);
   }),
 
@@ -30,5 +30,9 @@ export default {
       id: data.id,
       actionType: ActionTypes.GO_GETACTIVECOLLECTION
     });
+  }),
+
+  getTime: ActionCreator.create(function() {
+    API.getTime();
   })
 };

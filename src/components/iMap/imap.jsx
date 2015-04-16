@@ -30,7 +30,6 @@ export default React.createClass({
   },
 
   onChange() {
-    console.log('change', this.context);
     Actions.renderGeoObjectCollection(ActiveGOStore.getState().toArray());
   },
 

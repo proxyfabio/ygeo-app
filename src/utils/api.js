@@ -45,5 +45,29 @@ export default {
           ServerActions.didSearchGeoObjects(resp);
         }
       });
+  },
+
+  getTime() {
+    let params = {
+      'pub_action': 'time'
+    };
+
+    xhr('post', Env.connectors)
+      .type('form')
+      .send(params)
+      .end(function(err, res) {
+        let {
+          status, statusText, text
+        } = res;
+
+        if (err && __DEV__) {
+          console.warn(err);
+        }
+
+        if (status === 200 && statusText === 'OK') {
+          let resp = JSON.parse(text);
+          ServerActions.didGetTime(resp);
+        }
+      });
   }
 };
