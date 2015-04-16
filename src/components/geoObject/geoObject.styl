@@ -1,0 +1,36 @@
+@import "~lost-grid/stylus/lost.styl"
+
+.geoObject
+  column('2/3')
+  height 100%
+  position absolute
+  top 0
+  left 0
+
+  .geoObject__header
+    color red
+
+    &:after
+      clearfix()
+
+    .geoObject__title
+      column('11/12')
+
+    .geoObject__close
+      column('1/12')
+
+  .geoObject__body
+
+  .geoObject__media
+
+  .geoObject__footer
+    .geoObject__routes
+
+      .route__car
+        column('1/3')
+
+      .route__walk
+        column('1/3')
+
+      .route__bus
+        column('1/3')
