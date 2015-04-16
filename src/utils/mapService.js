@@ -60,11 +60,11 @@ export default class mapService {
     return this;
   }
 
-  flushMapByGOName(name){
+  flushMapByGOName(name) {
     let GOs = this.provider.geoObjects;
     GOs.each((go) => {
-      if(go && go.options.getName() === name){
-        if(GOs === go.getParent()){
+      if (go && go.options.getName() === name) {
+        if (GOs === go.getParent()) {
           GOs.remove(go);
         }
       }
@@ -84,7 +84,14 @@ export default class mapService {
       referencePoints: refPoints,
       params: {
         routingMode: 'masstransit'
+        // this doesn't work properly
+        // TODO: should check this out
+        // boundsAutoApply: true,
       }
+    });
+
+    multiRoute.events.add('update', () => {
+      this.provider.setBounds(multiRoute.getBounds());
     });
 
     this.provider.geoObjects.add(multiRoute);
