@@ -1,0 +1,40 @@
+{
+  "name": "geoapp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "test": "clear && npm run build && node ./server/server.js",
+    "start": "clear && npm run watch && forever start ./server/server.js"
+  },
+  "author": "proxyfabio",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.12.0",
+    "flux": "^2.0.1",
+    "forever": "^0.14.1",
+    "immutable": "^3.7.2",
+    "lodash-node": "^3.6.0",
+    "node-fetch": "^1.0.6",
+    "node-jsx": "^0.12.4",
+    "path": "^0.11.14",
+    "react": "^0.13.0",
+    "react-router": "^0.13.2",
+    "superagent": "^1.2.0"
+  },
+  "devDependencies": {
+    "babel": "^5.0.8",
+    "babel-core": "^5.1.10",
+    "babel-loader": "^5.0.0",
+    "css-loader": "^0.9.1",
+    "express": "^4.12.3",
+    "jscs": "^1.12.0",
+    "jscs-loader": "0.0.5",
+    "lost-grid": "^5.0.0",
+    "style-loader": "^0.9.0",
+    "stylus-loader": "^1.0.0",
+    "webpack": "^1.8.4"
+  }
+}

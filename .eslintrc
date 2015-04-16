@@ -1,0 +1,20 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "quotes": [2, "single", "avoid-escape"],
+    "eol-last": [0],
+    "strict": 1
+  },
+  "ecmaFeatures": {
+    "modules": true,
+    "jsx": true
+  },
+  "globals": {
+    "__DEV__": true,
+    "ymaps": true
+  }
+}
