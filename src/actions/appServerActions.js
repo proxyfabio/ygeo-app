@@ -22,5 +22,12 @@ export default {
       data: data.object,
       actionType: ActionTypes.TIME
     });
+  },
+
+  didGetWeather(data) {
+    Dispatcher.handleServerAction({
+      data,
+      actionType: ActionTypes.WEATHER
+    });
   }
 };

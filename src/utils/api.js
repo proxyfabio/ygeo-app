@@ -1,6 +1,8 @@
 import Env from '../constants/env.js';
 import xhr from 'superagent';
 import ServerActions from '../actions/appServerActions.js';
+import requestMiddleware from '../helpers/requestMiddleware.js';
+
 export default {
   getGeoObject(params) {
     params.pub_action = 'go/getdata';
@@ -69,5 +71,18 @@ export default {
           ServerActions.didGetTime(resp);
         }
       });
+  },
+
+  getWeather(){
+    let params = {
+      'pub_action': 'weather'
+    };
+
+    xhr('post', Env.connectors)
+      .type('form')
+      .send(params)
+      .end(requestMiddleware.parseXHRResponse(function(data){
+        ServerActions.didGetWeather(data.resp.object);
+      }));
   }
 };

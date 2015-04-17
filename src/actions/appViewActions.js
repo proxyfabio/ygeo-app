@@ -34,5 +34,9 @@ export default {
 
   getTime: ActionCreator.create(function() {
     API.getTime();
+  }),
+
+  getWeather: ActionCreator.create(function() {
+    API.getWeather();
   })
 };
