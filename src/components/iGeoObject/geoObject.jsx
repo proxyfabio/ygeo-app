@@ -18,33 +18,27 @@ let GeoObject = React.createClass({
   },
 
   getInitialState() {
-    let id = getRouterParam.call(this, 'goId');
-
-    if(id){
-      changeGO.call(this, id);
-    }
-
     let store = GOStore.getGOStore();
-
     return {
       id: store.get('id') || null,
       go: store.get('go') || null
     };
   },
 
-  shouldComponentUpdate: function(nextProps, nextState) {
-    let newId = getRouterParam.call(this, 'goId');
-    if(newId === this.state.id){
+  shouldComponentUpdate(nextProps, nextState) {
+    if(this.state.id === nextState.id){
+      changeGO.call(this, getRouterParam.call(this, 'goId'));
       return false;
     }
-
-    // else
-    changeGO.call(this, newId);
-
     return true;
   },
 
   componentDidMount: function() {
+    let nextId = getRouterParam.call(this, 'goId');
+    if(nextId && nextId !== this.state.id){
+      changeGO.call(this, nextId);
+    }
+
     GOStore.addChangeListener(this.onChange);
   },
 
