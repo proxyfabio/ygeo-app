@@ -1,11 +1,12 @@
 import './geoObject.styl';
 import React from 'react';
 import {Link} from 'react-router';
+import IMediaSlider from '../iMediaSlider/imediaSlider.jsx';
 
 export default class geoObject extends React.Component {
   render(){
     if(this.props.Data){
-      var {pagetitle, longtitle, content} = this.props.Data;
+      var {id, pagetitle, longtitle, content} = this.props.Data;
     }
 
     return <figure className="geoObject__wrapper">
@@ -21,9 +22,7 @@ export default class geoObject extends React.Component {
           {content}
         </p>
       </div>
-      <div className="geoObject__media">
-        <p>Тут видео и картинки</p>
-      </div>
+      <IMediaSlider/>
       <div className="geoObject__footer">
         <div className="geoObject__routes">
           <div className="geoObject__route route__car"><Link to="route" params={{rId: 'route_auto'}}>На авто</Link></div>
