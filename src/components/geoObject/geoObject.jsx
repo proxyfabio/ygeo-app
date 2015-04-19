@@ -6,7 +6,11 @@ import IMediaSlider from '../iMediaSlider/imediaSlider.jsx';
 export default class geoObject extends React.Component {
   render(){
     if(this.props.Data){
-      var {id, pagetitle, longtitle, content} = this.props.Data;
+      var {id, pagetitle, longtitle, content, tvs} = this.props.Data;
+    }
+
+    if(tvs){
+      var {schedule, address, phone} = tvs;
     }
 
     return <figure className="geoObject__wrapper">
@@ -18,6 +22,9 @@ export default class geoObject extends React.Component {
       </div>
       <div className="geoObject__body">
         <h1 className="geoObject__h1">{longtitle || pagetitle}</h1>
+        <div>Время работы: {schedule}</div>
+        <div>Адрес: {address}</div>
+        <div>Номер телефона: {phone}</div>
         <p>
           {content}
         </p>
