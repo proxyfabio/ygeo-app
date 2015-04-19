@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
+    "prod": "webpack -p",
     "test": "clear && npm run build && node ./server/server.js",
     "start": "clear && npm run watch && forever start ./server/server.js"
   },
@@ -23,20 +24,22 @@
     "react": "^0.13.0",
     "react-router": "^0.13.2",
     "react-typeahead": "git+https://github.com/proxyfabio/react-typeahead.git#develop",
-    "superagent": "^1.2.0"
+    "superagent": "^1.2.0",
+    "video.js": "^4.12.5",
+    "videojs-youtube": "^1.2.10"
   },
   "devDependencies": {
     "babel": "^5.0.8",
     "babel-core": "^5.1.10",
     "babel-loader": "^5.0.0",
-    "css-loader": "^0.9.1",
+    "css-loader": "^0.10.1",
     "express": "^4.12.3",
-    "jscs": "^1.12.0",
-    "jscs-loader": "0.0.5",
+    "file-loader": "^0.8.1",
     "jsx-loader": "^0.13.1",
     "lost-grid": "^5.0.0",
     "style-loader": "^0.9.0",
     "stylus-loader": "^1.0.0",
+    "url-loader": "^0.5.5",
     "webpack": "^1.8.4"
   }
 }

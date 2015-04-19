@@ -23,6 +23,15 @@ module.exports = {
     }, {
       test: /\.styl$/,
       loader: 'style-loader!css-loader!stylus-loader'
+    }, {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader!url-loader'
+    }, {
+      test: /\.(ttf|eot|svg)$/,
+      loader: 'url-loader?name=[name].[ext]'
+    }, {
+      test: /\.woff$/,
+      loader: 'url-loader?limit=10000&minetype=application/font-woff&name=[name].[ext]'
     }]
   },
   plugins: [definePlugin]
