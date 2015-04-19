@@ -33,7 +33,7 @@ class MediaItemsStore extends Store {
       return [];
     }
     // else
-    return JSON.parse(json.value).map((el) => {
+    return JSON.parse(json).map((el) => {
       let type;
       let value = el[name];
 
