@@ -11,7 +11,6 @@ function mapRefs(func) {
 }
 
 function bindVideojs() {
-  console.log(this.refs);
   mapRefs.call(this, function(ref){
     videojs(ref.getDOMNode().id);
   });
@@ -69,7 +68,6 @@ export default class MediaItem extends React.Component {
   }
 
   render(){
-    console.log(this.props);
     return <div className={this.props.className}>
       {this.prerenderItem.call(this)}
     </div>;
