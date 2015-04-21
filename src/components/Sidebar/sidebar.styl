@@ -3,6 +3,7 @@
 .sidebar
   align('right')
   position relative
+  top 360px
 
   .legend
     box-shadow 0 0 50px -20px #000
@@ -20,21 +21,21 @@
       position relative
       margin 0 0 2px
 
-      &.legend__category:after
-        display block
-        content ' '
-        position absolute
-        top 0
-        left 0
-        width 100%
-        height 100%
-        background-color #fff
-        opacity .8
-        z-index 0
-        transition all 0.2s ease
-        -webkit-transition all 0.2s ease
-        -moz-transition all 0.2s ease
-        -o-transition all 0.2s ease
+      &:after
+        display: block;
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: .8;
+        z-index: 0;
+        transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
 
       &--active
         &.legend__category:after
@@ -56,16 +57,17 @@
         margin 15px 16px 0 24px
 
     &__search
-      background-color #1e7300
-
-      &:before
+      .legend__ico
+        display: block;
         background-image url(../../images/ico_1.png)
-        content ''
-        display block
-        float left
-        margin 15px 16px 0 24px
-        width 48px
-        height 48px
+        float: left;
+        margin: 15px 16px 0 24px;
+        width: 48px;
+        height: 48px;
+        border: none !important
 
-      & a
+      &:after
+        background-color: #1e7300;
+
+      a
         color #fff

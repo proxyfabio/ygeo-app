@@ -14,7 +14,8 @@ function parseGO(argument) {
   let data = {
     id: argument.id,
     category: argument.category,
-    icon: arguments.category_icon
+    icon: arguments.category_icon,
+    legend_icon: arguments.category_legend_icon
   };
 
   Object.keys(tvs).map((key) => {

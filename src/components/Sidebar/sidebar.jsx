@@ -17,6 +17,7 @@ export default class Sidebar extends React.Component {
       _groups[el.category].items.push(el);
       _groups[el.category].id = el.category_id;
       _groups[el.category].icon = el.category_icon;
+      _groups[el.category].legend_icon = el.legend_icon;
 
     });
 
@@ -24,12 +25,15 @@ export default class Sidebar extends React.Component {
       <nav className="legend">
         <ul className="legend__wrapper">
           <li className="legend__item legend__search">
-            <Link className="legend__link" to="search">Найти</Link>
+            <Link className="legend__link" to="search">
+              <span><span className="legend__ico"/></span>
+              Найти
+            </Link>
           </li>
           {Object.keys(_groups).map((key) => {
             return <MapLegendSection
               key={key}
-              icon={_groups[key].icon}
+              icon={_groups[key].legend_icon}
               SectionId={_groups[key].id}
               SectionName={key}
             />;

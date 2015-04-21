@@ -59,6 +59,27 @@
       z-index 100
       box-shadow 0 -20px 50px -10px #000 inset
 
+      &:before
+        content: ' ';
+        -webkit-filter: blur(10px);
+        background-color: rgba(113, 113, 113, 0.89);
+        width: 100%;
+        height: inherit;
+        position: absolute;
+        background: linear-gradient(135deg, rgb(119, 119, 119), rgba(110, 110, 110, 0.7));
+
+      &:after
+        display: block;
+        content: " ";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: #fff;
+        opacity: .3;
+        z-index: 0;
+
       & > a
         display block
         width 145px
@@ -69,6 +90,7 @@
         overflow hidden
         text-indent -1000px
         z-index 10
+
 
         &[class*="__video"]:before
           display block
@@ -91,6 +113,15 @@
           left 0
           background url(../../images/ico_photo.png) center -71px no-repeat
           z-index 10
+
+        &.geoObject__photo.geoObject__item--active:before
+          background: url(../../images/ico_photo.png) center 20px no-repeat;
+
+        &.geoObject__video.geoObject__item--active:before
+          background: url(../../images/ico_video.png) center 15px no-repeat;
+
+        &.geoObject__item--active:after
+          background-color: #ffffff;
 
         &:after
           display block
@@ -147,6 +178,9 @@
       display inline-block
       margin 0 20px 0 0
 
+      & a:visited
+        color #000
+
     & [class*="__routeDesc"]
       margin 0 55px 0 0
 
@@ -178,3 +212,17 @@
     width 554px
     overflow-y: scroll;
     margin 0 70px 0 48px
+
+  &__pager
+    text-align: right;
+    font-size: 24px;
+    letter-spacing: -1px;
+    color: #fff;
+    position: absolute;
+    bottom: 0px;
+    left: 290px;
+    height: 80px;
+    width: auto;
+    padding: 0 32px 0;
+    line-height: 80px;
+    z-index: 1000;

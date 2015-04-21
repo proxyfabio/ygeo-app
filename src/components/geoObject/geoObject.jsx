@@ -31,6 +31,15 @@ export default class geoObject extends React.Component {
 
         <div className={ns + '__slider'}>
           <IMediaSlider/>
+
+          <div className={ns + '__nav'}>
+            <a href="#" className="geoObject__photo geoObject__item geoObject__item--active">Фото</a>
+            <a href="#" className="geoObject__video geoObject__item">Видео</a>
+            <div className="geoObject__pager">
+              1 / 2
+            </div>
+          </div>
+
         </div>
 
         <div className={ns + '__info'}>
