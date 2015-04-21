@@ -24,7 +24,7 @@ export default class Keyboard extends React.Component {
 			<Button char={8} value="Стереть" onClick={this.props.onButtonClick} className={ns + '__backspace ' + ns + '__button'} />
 			<br/>
 			{this.renderButtonSequence(lettersLine2)}
-			<Button char={13} value="Найти" onClick={this.props.onButtonClick} className={ns + '__enter ' + ns + '__button'} />
+			<Button char={13} value="Найти" onClick={this.props.onEnterClick} className={ns + '__enter ' + ns + '__button'} />
 			<br/>
 			{this.renderButtonSequence(lettersLine3)}
 			<Button char={27} value="Закрыть" onClick={this.props.onButtonClick} className={ns + '__esc ' + ns + '__button'} />

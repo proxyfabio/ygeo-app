@@ -1,25 +1,28 @@
-import React from 'react';
-import SearchForm from '../SearchForm/searchform.jsx';
 import Actions from '../../actions/appViewActions.js';
-import SearchStore from '../../stores/searchGeoObjectsStore.js';
-import routeNames from '../../constants/routes.js';
+import React from 'react';
+import {RouteHandler} from 'react-router';
+import SearchForm from '../SearchForm/searchform.jsx';
+
+import searchStore from '../../stores/searchStore.js';
+import SearchGOsStore from '../../stores/searchGeoObjectsStore.js';
 
 export default React.createClass({
   contextTypes: {
     router: React.PropTypes.func
   },
 
-  mapState(predicate){
-    SearchStore.getState().map((el) => {
-      predicate(el);
-    });
+  getInitialState() {
+    return {
+      options: [],
+      entryValue: ''
+    };
   },
 
-  shouldSearch(query){
+  shouldSearch(query) {
     Actions.searchGeoObject(query);
   },
 
-  shouldSelect(query){
+  shouldSelect(query) {
     let router = this.context.router;
 
     this.mapState(function(el){
@@ -29,36 +32,60 @@ export default React.createClass({
     });
   },
 
-  getInitialState() {
-    return {
-      Options: []
-    };
+  mapState(predicate){
+    SearchGOsStore.getState().map((el) => {
+      predicate(el);
+    });
+  },
+
+  componentDidMount() {
+    Actions.clickKeybordButton('');
   },
 
   componentWillMount() {
-    SearchStore.addChangeListener(this.onChange);
+    SearchGOsStore.addChangeListener(this.onChange);
+    searchStore.addChangeListener(this.onChange);
   },
 
   componentWillUnmount() {
-    SearchStore.removeChangeListener(this.onChange);
+    SearchGOsStore.removeChangeListener(this.onChange);
+    searchStore.removeChangeListener(this.onChange);
+    // this.setState({
+    //   options: []
+    // });
   },
 
-  onChange() {
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(this.state, nextState);
+    return true;
+  },
+
+  onChange(){
     var options = [];
 
     this.mapState(function(el){
       options.push(el.text);
     });
 
+    console.log(this.state);
+
     this.setState({
-      'Options': options
+      entryValue: searchStore.getState(),
+      options: options
     });
+
+    console.log(this.state);
   },
 
   render(){
     return <section className="quickSearch">
       <div className="quickSearch__image"></div>
-      <SearchForm Options={this.state.Options} onOptionSelect={this.shouldSelect} onFormSubmit={this.shouldSearch}></SearchForm>
+      <SearchForm
+        options={this.state.options}
+        entryValue={this.state.entryValue}
+        onFormSubmit={this.shouldSearch}
+        onOptionSelect={this.shouldSelect}
+      />
     </section>;
   }
 });

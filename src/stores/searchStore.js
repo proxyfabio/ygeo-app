@@ -26,15 +26,12 @@ searchStore.dispatchToken = Dispatcher.register(function(payload) {
 				case 32:
 					iState += ' ';
 					break;
-				case 13:
-					iState += String.fromCharCode(13);
-					break;
 				default:
 					iState += String.fromCharCode(action.data.char);
 					break;
 			}
 
-      searchStore.emitChange();
+      searchStore.emitChange(action.data.char);
       break;
   }
 

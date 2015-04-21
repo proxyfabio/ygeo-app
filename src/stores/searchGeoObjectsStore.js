@@ -12,9 +12,9 @@ class SearchStore extends Store {
   }
 }
 
-var searchStore = new SearchStore();
+var searchGeoObjectsStore = new SearchStore();
 
-searchStore.dispatchToken = Dispatcher.register(function(payload) {
+searchGeoObjectsStore.dispatchToken = Dispatcher.register(function(payload) {
   let action = payload.action;
   switch (action.actionType) {
 
@@ -30,11 +30,12 @@ searchStore.dispatchToken = Dispatcher.register(function(payload) {
           });
         });
       }
-      searchStore.emitChange();
+
+      searchGeoObjectsStore.emitChange();
       break;
   }
 
   return true;
 });
 
-export default searchStore;
+export default searchGeoObjectsStore;

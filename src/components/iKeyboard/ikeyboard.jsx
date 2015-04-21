@@ -1,4 +1,5 @@
 import React from 'react';
+import {Routehandler} from 'react-router';
 import Keyboard from '../Keyboard/keyboard.jsx';
 import Actions from '../../actions/appViewActions.js';
 
@@ -9,10 +10,8 @@ export default class IKeyboard extends React.Component {
 		switch(value){
 			// esc
 			case 27:
-				location.hash = '#';
+				this.context.router.transitionTo('/');
 				break;
-			// enter
-			case 13:
 			// space
 			case 32:
 			// backspace
@@ -29,6 +28,7 @@ export default class IKeyboard extends React.Component {
 			<Keyboard
 				className="keyboard__section"
 				onButtonClick={this.handleButtonClick}
+				onEnterClick={this.props.onEnterClick}
 			/>
     </section>;
   }

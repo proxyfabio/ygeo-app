@@ -9,3 +9,7 @@ export default class Button extends React.Component {
 		</li>;
   }
 }
+
+Button.contextTypes = {
+  router: React.PropTypes.func
+};
