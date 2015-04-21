@@ -55,9 +55,9 @@ let GeoObject = React.createClass({
   },
 
   render () {
-    return <div className='geoObject'>
+    return <section className='geoObject'>
       <GO Data={this.state.go} />
-    </div>;
+    </section>;
   }
 });
 

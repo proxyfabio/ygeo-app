@@ -18,7 +18,7 @@ function parseGO(argument) {
   };
 
   Object.keys(tvs).map((key) => {
-    data[key] = tvs[key].value || null;
+    data[key] = tvs[key] || null;
   });
 
   return data;

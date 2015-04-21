@@ -1,15 +1,12 @@
 @import "~lost-grid/stylus/lost.styl"
 
 .map
-  column('2/3')
+  row('1/1')
 
-  &.inactive
-    .map__area
+  &__section
+    height 1920px
+    margin 0 auto
+
+    &--inactive
       filter blur(3px)
       -webkit-filter blur(3px)
-
-  .map__area
-    // width 1080px
-    height 1920px
-    // width 880px
-    margin 0 auto

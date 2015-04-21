@@ -3,9 +3,12 @@
 .slider
   // column('1/1')
   width 100%
-  height 300px
+  height inherit
   overflow hidden
   position relative
+
+  .slider__wrapper
+    height inherit
 
   .slider__item
     height inherit
@@ -15,32 +18,40 @@
     cursor pointer
     position absolute
     top 50%
+    margin-top -32px
+    outline 0
+    width 41px
+    height 42px
+    text-indent -9999px
+    z-index 99
 
   .slider__left
-    left 0
+    left 15%
+    background url(../../images/arrow_left.png) center center no-repeat
 
   .slider__right
-    right 0
+    right 15%
+    background url(../../images/arrow_right.png) center center no-repeat
 
   .slider__content
     margin 0 auto
-    height 300px
+    height inherit
 
 
 .example-enter {
-  opacity: 0.01;
-  transition: opacity .5s ease-in;
+  opacity 0.01
+  transition opacity .5s ease-in
 }
 
 .example-enter.example-enter-active {
-  opacity: 1;
+  opacity 1
 }
 
 .example-leave {
-  opacity: 1;
-  transition: opacity .5s ease-in;
+  opacity 1
+  transition opacity .5s ease-in
 }
 
 .example-leave.example-leave-active {
-  opacity: 0.01;
+  opacity 0.01
 }

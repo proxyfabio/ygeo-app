@@ -1,17 +1,66 @@
 @import "~lost-grid/stylus/lost.styl"
 
 .quickSearch
-  height 100%
-  position absolute
-  top 0
-  left 0
-  width inherit
-  height inherit
-  text-align center
+  // height 100%
+  // position absolute
+  // top 0
+  // left 0
+  // width inherit
+  // height inherit
+  // text-align center
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
 
-  .quickSearch__figure
+  &:after
+    display: block;
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1e7300;
+    z-index: 0;
+    opacity: .8;
+
+  &__image
+    background: url(../../images/loope.png) no-repeat;
+    position: absolute;
+    top: 437px;
+    left: 50%;
+    margin: 0 auto;
+    width: 262px;
+    height: 262px;
+    margin: 0 0 0 -131px;
+    z-index: 10;
+
+  &__section
+    margin: 100px auto;
+    width: 100%;
+    position: absolute;
+    top: 830px;
+    z-index: 10;
+
     & input
       width 100%
 
-    .typeahead-selector .hover
-      background-color green
+    .typeahead
+      & input[type="text"]
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+        height: 170px;
+        font-size: 64px;
+        text-align: center;
+        background: none;
+        border: 0;
+        color: #fff;
+        text-transform: capitalize;
+        outline: none;
+
+      & .typeahead-selector .hover
+        background-color green

@@ -5,13 +5,13 @@ import Dispatcher from '../core/dispatcher.js';
 import ActionTypes from '../constants/actions.js';
 
 var iState = null;
-class RoutesStore extends Store {
+class TimeStore extends Store {
   getState() {
     return iState;
   }
 }
 
-var timeStore = new RoutesStore();
+var timeStore = new TimeStore();
 
 timeStore.dispatchToken = Dispatcher.register(function(payload) {
   let action = payload.action;

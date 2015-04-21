@@ -38,5 +38,12 @@ export default {
 
   getWeather: ActionCreator.create(function() {
     API.getWeather();
+  }),
+
+  clickKeybordButton: ActionCreator.create(function(char) {
+    Dispatcher.handleViewAction({
+      data: {char},
+      actionType: ActionTypes.KEYBOARD_CLICKBUTTON
+    });
   })
 };

@@ -75,7 +75,7 @@ export default class IMediaSlider extends React.Component {
     let active = this.state.active;
     return <section className="slider">
       <span className="slider__ruler slider__left" onClick={this.handleClickLeft.bind(this)}>&#x25C4;</span>
-      <ReactCSSTransitionGroup transitionName="example">
+      <ReactCSSTransitionGroup className="slider__wrapper" transitionName="example">
         <MediaItem className="slider__item" key={active} id={active} item={media[active - 1]}/>
       </ReactCSSTransitionGroup>
       <span className="slider__ruler slider__right" onClick={this.handleClickRight.bind(this)}>&#x25BA;</span>

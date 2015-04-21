@@ -32,7 +32,7 @@ export default class IWeather extends React.Component {
   }
 
   render(){
-    return <div className="weather">{[this.state.temp, this.state.measure].join('')}</div>;
+    return <div className={this.props.className}>{[this.state.temp > 0 ? '+' : '', this.state.temp, this.state.measure].join('')}</div>;
   }
 }
 

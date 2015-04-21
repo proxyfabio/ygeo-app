@@ -1,12 +1,10 @@
 'use strict';
 import './sidebar.styl';
 import React from 'react';
-import {MapLegendSection} from '../MapLegendSection/mapLegendSection.jsx';
-import {Clock} from '../iClock/iclock.jsx';
+import MapLegendSection from '../MapLegendSection/mapLegendSection.jsx';
 import {Link} from 'react-router';
-import IWeather from '../iWeather/iWeather.jsx';
 
-export class Sidebar extends React.Component {
+export default class Sidebar extends React.Component {
   render() {
     var _groups = {};
     this.props.Places.map((el) => {
@@ -18,23 +16,26 @@ export class Sidebar extends React.Component {
       }
       _groups[el.category].items.push(el);
       _groups[el.category].id = el.category_id;
+      _groups[el.category].icon = el.category_icon;
+
     });
 
     return <aside className="sidebar">
-      <Link to="search">Искать</Link>
-      <Clock Interval="30000" />
-      <IWeather Interval={1800000} />
-      <h2>Места</h2>
-      <section className="mapLegendSection">
-        {Object.keys(_groups).map((key) => {
-          return <MapLegendSection
-            key={key}
-            SectionId={_groups[key].id}
-            SectionName={key}
-            Items={_groups[key].items}
-          />;
-        })}
-      </section>
+      <nav className="legend">
+        <ul className="legend__wrapper">
+          <li className="legend__item legend__search">
+            <Link className="legend__link" to="search">Найти</Link>
+          </li>
+          {Object.keys(_groups).map((key) => {
+            return <MapLegendSection
+              key={key}
+              icon={_groups[key].icon}
+              SectionId={_groups[key].id}
+              SectionName={key}
+            />;
+          })}
+      </ul>
+      </nav>
     </aside>;
   }
 }

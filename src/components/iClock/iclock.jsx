@@ -2,7 +2,7 @@ import React from 'react';
 import Actions from '../../actions/appViewActions.js';
 import timeStore from '../../stores/timeStore.js';
 
-export class Clock extends React.Component {
+export default class Clock extends React.Component {
   constructor(props){
     super(props);
 
@@ -34,6 +34,6 @@ export class Clock extends React.Component {
   }
 
   render(){
-    return <div className="clock">{this.parseUnixTime(this.state.unixtime)}</div>;
+    return <div className={this.props.className}>{this.parseUnixTime(this.state.unixtime)}</div>;
   }
 }

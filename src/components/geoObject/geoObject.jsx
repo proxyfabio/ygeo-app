@@ -10,33 +10,49 @@ export default class geoObject extends React.Component {
     }
 
     if(tvs){
-      var {schedule, address, phone} = tvs;
+      var {schedule, schedule_time, address, phone} = tvs;
     }
 
-    return <figure className="geoObject__wrapper">
-      <div className="geoObject__header">
-        <div className="geoObject__title">Информация об объекте {pagetitle}</div>
-        <div className="geoObject__close">
-          <Link to="app">Закрыть</Link>
+    function createMarkup(markup) {
+      return {__html:  markup};
+    }
+
+    let ns = 'geoObject';
+    return <section className={ns + '__section'}>
+      <div className={ns + '__header'}>
+        <div className={ns + '__title'}>
+          {longtitle || pagetitle}
+          <span className={ns + '__address'}>{address}</span>
         </div>
       </div>
-      <div className="geoObject__body">
-        <h1 className="geoObject__h1">{longtitle || pagetitle}</h1>
-        <div>Время работы: {schedule}</div>
-        <div>Адрес: {address}</div>
-        <div>Номер телефона: {phone}</div>
-        <p>
-          {content}
-        </p>
-      </div>
-      <IMediaSlider/>
-      <div className="geoObject__footer">
+
+      <div className={ns + '__wrapper'}>
+        <Link to="app" className={ns + '__close'}></Link>
+
+        <div className={ns + '__slider'}>
+          <IMediaSlider/>
+        </div>
+
+        <div className={ns + '__info'}>
+          <div className={ns + '__dest'}>
+            <span className={ns + '__h'}>{address}</span>
+            {phone}
+          </div>
+          <div className={ns + '__time'}>
+            <span className={ns + '__h'}>{schedule_time}</span>
+            {schedule}
+          </div>
+        </div>
+
         <div className="geoObject__routes">
-          <div className="geoObject__route route__car"><Link to="route" params={{rId: 'route_auto'}}>На авто</Link></div>
-          <div className="geoObject__route route__walk"><Link to="route" params={{rId: 'route_walk'}}>Пешком</Link></div>
-          <div className="geoObject__route route__bus"><Link to="route" params={{rId: 'route_bus'}}>Общественным транспортом</Link></div>
+          <span className={ns + '__routeDesc'}>Как добраться:</span>
+          <span className="geoObject__route route__car"><Link to="route" params={{rId: 'route_auto'}}>На авто</Link></span>
+          <span className="geoObject__route route__walk"><Link to="route" params={{rId: 'route_walk'}}>Пешком</Link></span>
+          <span className="geoObject__route route__bus"><Link to="route" params={{rId: 'route_bus'}}>Транспортом</Link></span>
         </div>
+
+        <div className={ns + '__content'}>{content}</div>
       </div>
-    </figure>;
+    </section>;
   }
 }

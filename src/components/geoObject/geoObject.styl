@@ -1,36 +1,179 @@
 @import "~lost-grid/stylus/lost.styl"
 
 .geoObject
-  column('2/3')
-  height 100%
-  position absolute
-  top 0
-  left 0
-
-  .geoObject__header
-    color red
+  &__header
+    position absolute
+    top 240px
+    left 48px
+    color #fff
+    font-family 'HeliosCondC-Bold'
+    font-size 38px
+    z-index 20100
+    letter-spacing -1px
 
     &:after
+      content ''
       clearfix()
 
-    .geoObject__title
-      column('11/12')
+    & [class*="__address"]
+      display block
+      font-size 24px
+      font-family 'HeliosCondLightC'
+      text-align left
+      letter-spacing normal
 
-    .geoObject__close
-      column('1/12')
+  &__wrapper
+    width 672px
+    height 1302px
+    position absolute
+    top 360px
+    left 48px
+    z-index 600
+    background-color #f9f9f9
+    font-size 16px
+    color #333333
+    box-shadow 0 0 178px -20px #000
+    overflow hidden
 
-  .geoObject__body
+  & [class*="__close"]
+    position absolute
+    top 505px
+    right 0
+    z-index 500
+    width 48px
+    height 48px
+    background url(../../images/cross.png) no-repeat
+    cursor pointer
 
-  .geoObject__media
+  &__slider
+    height 504px
+    position relative
+    font-family 'HeliosCondLightC'
 
-  .geoObject__footer
-    .geoObject__routes
+    & [class*="__nav"]
+      position absolute
+      bottom 0
+      left 0
+      width 100%
+      height 80px
+      z-index 100
+      box-shadow 0 -20px 50px -10px #000 inset
 
-      .route__car
-        column('1/3')
+      & > a
+        display block
+        width 145px
+        height 80px
+        margin 0
+        position relative
+        float left
+        overflow hidden
+        text-indent -1000px
+        z-index 10
 
-      .route__walk
-        column('1/3')
+        &[class*="__video"]:before
+          display block
+          content " "
+          position absolute
+          width 100%
+          height 100%
+          top 0
+          left 0
+          background url(../../images/ico_video.png) center -76px no-repeat
+          z-index 10
 
-      .route__bus
-        column('1/3')
+        &[class*="__photo"]:before
+          display block
+          content " "
+          position absolute
+          width 100%
+          height 100%
+          top 0
+          left 0
+          background url(../../images/ico_photo.png) center -71px no-repeat
+          z-index 10
+
+        &:after
+          display block
+          content " "
+          position absolute
+          width 100%
+          height 100%
+          top 0
+          left 0
+          background-color #27720c
+          opacity .6
+
+  &__info
+    width 100%
+    display table
+    font-size14px
+    font-family 'HeliosCondLightC'
+
+    & [class*="__dest"]
+      display table-cell
+      vertical-align top
+      width 40%
+      font-size inherit
+      padding 40px 30px 40px 48px
+
+    & [class*="__time"]
+      display table-cell
+      vertical-align top
+      font-size inherit
+      padding 40px 48px 40px 40px
+
+    & [class*="__h"]
+      font-size 24px
+      font-family 'HeliosCondC-Bold'
+      display block
+      margin 0 0 6px 0
+
+  &__routes
+    background-color #ffd200
+    box-shadow 0 50px 100px -70px #000 inset
+    height 80px
+    line-height 80px
+    font-size 24px
+    padding 0 48px
+    font-family 'HeliosCondLightC'
+    z-index 5000
+
+    span
+      display inline-block
+      margin 0 20px 0 0
+
+    & [class=*="__route"]
+      display inline-block
+      margin 0 20px 0 0
+
+    & [class*="__routeDesc"]
+      margin 0 55px 0 0
+
+    & [class*="__car"]
+      padding 0 0 0 37px
+      background url(../../images/ico_car.png) left center no-repeat
+      text-decoration underline
+      cursor pointer
+
+    & [class*="__walk"]
+      padding 0 0 0 25px
+      background url(../../images/ico_walk.png) left center no-repeat
+      text-decoration underline
+      cursor pointer
+
+    & [class*="__bus"]
+      padding 0 0 0 33px
+      margin 0 0 0 0
+      background url(../../images/ico_bus.png) left center no-repeat
+      text-decoration underline
+      cursor pointer
+
+  &__content
+    overflow hidden
+    height auto
+    top 750px
+    bottom 30px
+    position absolute
+    width 554px
+    overflow-y: scroll;
+    margin 0 70px 0 48px

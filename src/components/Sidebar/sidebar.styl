@@ -1,4 +1,71 @@
 @import "~lost-grid/stylus/lost.styl"
 
 .sidebar
-  column('1/3')
+  align('right')
+  position relative
+
+  .legend
+    box-shadow 0 0 50px -20px #000
+    color #000
+    font-size 24px
+    position absolute
+    right 0
+    top 360px
+    z-index 100
+
+    &__wrapper
+      list-style none
+
+    &__item
+      position relative
+      margin 0 0 2px
+
+      &.legend__category:after
+        display block
+        content ' '
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 100%
+        background-color #fff
+        opacity .8
+        z-index 0
+        transition all 0.2s ease
+        -webkit-transition all 0.2s ease
+        -moz-transition all 0.2s ease
+        -o-transition all 0.2s ease
+
+      &--active
+        &.legend__category:after
+          opacity 1
+
+    &__link
+      color #000
+      display block
+      line-height 80px
+      position relative
+      text-decoration none
+      width 360px
+      z-index 10
+
+      & .link__ico
+        display block
+        float left
+        line-height 0
+        margin 15px 16px 0 24px
+
+    &__search
+      background-color #1e7300
+
+      &:before
+        background-image url(../../images/ico_1.png)
+        content ''
+        display block
+        float left
+        margin 15px 16px 0 24px
+        width 48px
+        height 48px
+
+      & a
+        color #fff

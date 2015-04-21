@@ -57,6 +57,7 @@ export default React.createClass({
 
   render(){
     return <section className="quickSearch">
+      <div className="quickSearch__image"></div>
       <SearchForm Options={this.state.Options} onOptionSelect={this.shouldSelect} onFormSubmit={this.shouldSearch}></SearchForm>
     </section>;
   }

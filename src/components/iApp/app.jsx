@@ -1,8 +1,8 @@
 'use strict';
 import React from 'react';
-import {IMainSection} from '../iMainSection/mainsection.jsx';
-import {Header} from '../Header/header.jsx';
-import {Footer} from '../Footer/footer.jsx';
+import IMainSection from '../iMainSection/mainsection.jsx';
+import Header from '../Header/header.jsx';
+import Footer from '../Footer/footer.jsx';
 import Actions from '../../actions/appViewActions.js';
 
 import {RouteHandler} from 'react-router';

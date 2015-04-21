@@ -2,6 +2,8 @@ import React from 'react';
 import './searchform.styl';
 import Alert from '../../utils/alert.js';
 import Typeahead from 'react-typeahead/lib/typeahead/index.js';
+import IKeyboard from '../iKeyboard/ikeyboard.jsx';
+import searchStore from '../../stores/searchStore.js';
 
 export default class Search extends React.Component {
   handleEachKey(e){
@@ -35,18 +37,31 @@ export default class Search extends React.Component {
     return this.getTypeaheadInstance().refs.entry.getDOMNode().value;
   }
 
+  componentWillMount() {
+    searchStore.addChangeListener(this.onChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    searchStore.removeChangeListener(this.onChange.bind(this));
+  }
+
+  onChange(){
+    let query = searchStore.getState();
+    let field = this.refs.query;
+    query.match(/\r/) ? this.handleSubmit() : field.setEntryText(query);
+  }
+
   render(){
-    return <form method="post" onSubmit={this.handleSubmit.bind(this)} className="quickSearch__figure">
+    return <form method="post" onSubmit={this.handleSubmit.bind(this)} className="quickSearch__section">
       <Typeahead
         options={this.props.Options || []}
         name="query"
         ref="query"
-        placeholder="Найдется все!"
         onEnter={this.handleSubmit.bind(this)}
         onEachKey={this.handleEachKey.bind(this)}
         onOptionSelected={this.handleOptionSelect.bind(this)}
       />
-      <button>Найти</button>
+      <IKeyboard/>
     </form>;
   }
 }

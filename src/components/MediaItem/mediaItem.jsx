@@ -52,8 +52,8 @@ export default class MediaItem extends React.Component {
           id={id}
           ref={id}
           controls
-          height={300}
-          width={400}
+          height={504}
+          width={672}
           preload="auto"
           className="video-js vjs-default-skin slider__content"
           data-setup={JSON.stringify({techOrder: ['youtube'], src: this.props.item.value})}
