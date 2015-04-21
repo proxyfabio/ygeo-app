@@ -2,6 +2,7 @@ import './geoObject.styl';
 import React from 'react';
 import {Link} from 'react-router';
 import IMediaSlider from '../iMediaSlider/imediaSlider.jsx';
+import Scrollbar from '../geminiScrollbar/geminiScrollbar.jsx';
 
 export default class geoObject extends React.Component {
   render(){
@@ -33,8 +34,8 @@ export default class geoObject extends React.Component {
           <IMediaSlider/>
 
           <div className={ns + '__nav'}>
-            <a href="#" className="geoObject__photo geoObject__item geoObject__item--active">Фото</a>
-            <a href="#" className="geoObject__video geoObject__item">Видео</a>
+            <a href="#" onClick={this.switchToPhoto} className="geoObject__photo geoObject__item geoObject__item--active">Фото</a>
+            <a href="#" onClick={this.switchToPhoto} className="geoObject__video geoObject__item">Видео</a>
             <div className="geoObject__pager">
               1 / 2
             </div>
@@ -60,7 +61,9 @@ export default class geoObject extends React.Component {
           <span className="geoObject__route route__bus"><Link to="route" params={{rId: 'route_bus'}}>Транспортом</Link></span>
         </div>
 
-        <div className={ns + '__content'}>{content}</div>
+        <Scrollbar>
+          <div className={ns + '__content'} dangerouslySetInnerHTML={{__html: String(content)}}></div>
+        </Scrollbar>
       </div>
     </section>;
   }

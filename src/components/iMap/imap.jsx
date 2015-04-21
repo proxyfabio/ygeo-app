@@ -3,6 +3,7 @@ import Actions from '../../actions/appServiceAction.js';
 import ActiveGOStore from '../../stores/activeGeoObjectsStore.js';
 import Map from '../Map/map.jsx';
 import React from 'react';
+import Promo from '../Banner/banner.jsx';
 
 import routeNames from '../../constants/routes.js';
 import routesStore from '../../stores/routesStore.js';
@@ -50,6 +51,7 @@ export default React.createClass({
 
     return <section className="map">
       <Map className={styles}/>
+      <Promo/>
     </section>;
   }
 });

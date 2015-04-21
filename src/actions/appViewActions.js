@@ -45,5 +45,9 @@ export default {
       data: {char},
       actionType: ActionTypes.KEYBOARD_CLICKBUTTON
     });
+  }),
+
+  getActualBanner: ActionCreator.create(function(params) {
+    API.getBanner(params);
   })
 };

@@ -29,5 +29,12 @@ export default {
       data,
       actionType: ActionTypes.WEATHER
     });
+  },
+
+  didGetBanner(data) {
+    Dispatcher.handleServerAction({
+      data,
+      actionType: ActionTypes.BANNER
+    });
   }
 };

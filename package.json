@@ -23,8 +23,8 @@
     "path": "^0.11.14",
     "react": "^0.13.0",
     "react-router": "^0.13.2",
-    "react-scrollbars": "0.0.4",
     "react-typeahead": "git+https://github.com/proxyfabio/react-typeahead.git#develop",
+    "react-gemini-scrollbar": "git+https://github.com/proxyfabio/react-gemini-scrollbar.git#develop",
     "superagent": "^1.2.0",
     "video.js": "^4.12.5",
     "videojs-youtube": "^1.2.10"
