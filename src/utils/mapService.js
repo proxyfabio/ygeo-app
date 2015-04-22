@@ -105,11 +105,10 @@ export default class mapService {
   }
 
   getCurrentBounds(){
-    return this.provider.geoObjects.getBounds();
+    return this.provider.geoObjects.getBounds() || this.provider.getBounds();
   }
 
   renderGeoObjects(list) {
-
     list.map((el) => {
       let data = parseGO(el);
 
@@ -119,7 +118,25 @@ export default class mapService {
     }, this);
 
     let newBounds = this.getCurrentBounds();
-    this.autoAdjustBounds && newBounds && this.provider.setBounds(newBounds);
+
+    function checkBounds(bounds) {
+      var notEq = 0;
+      bounds[0].map((el, i) => {
+        if(el === bounds[1][i]){
+          notEq++;
+        }
+      });
+      return (notEq === bounds.length) ? false : true;
+    }
+
+    if(this.autoAdjustBounds){
+      if(checkBounds(newBounds)){
+        this.provider.setBounds(newBounds);
+      }else{
+        this.provider.setCenter([56.337042, 36.725815]);
+        this.provider.setZoom(12);
+      }
+    }
 
     return this;
   }
