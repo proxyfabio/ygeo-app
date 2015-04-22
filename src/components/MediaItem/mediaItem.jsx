@@ -2,6 +2,7 @@ import React from 'react';
 import './mediaItem.styl';
 import videojs from 'video.js';
 import 'videojs-youtube';
+import 'videojs-vimeo/vjs.vimeo.js';
 import 'vtt.js';
 
 function mapRefs(func) {
@@ -12,13 +13,19 @@ function mapRefs(func) {
 
 function bindVideojs() {
   mapRefs.call(this, function(ref){
-    videojs(ref.getDOMNode().id);
+    console.log(ref.getDOMNode());
+    if(ref.getDOMNode().id){
+      videojs(ref.getDOMNode().id);
+    }
   });
 }
 
 function unbindVideojs() {
   mapRefs.call(this, function(ref){
-    ref.getDOMNode().player.dispose();
+    let player = ref.getDOMNode().player;
+    if(player){
+      player.dispose();
+    }
   });
 }
 
@@ -34,6 +41,9 @@ export default class MediaItem extends React.Component {
     this.setState({
       item: this.prerenderItem()
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
     bindVideojs.call(this);
   }
 
@@ -43,20 +53,36 @@ export default class MediaItem extends React.Component {
 
   prerenderItem(){
     var item;
+    let height;
     let prefix = 'video';
-
+    var id;
     switch (this.props.item.type){
       case 'youtube':
-        let id = [prefix, this.props.id].join('');
+        id = [prefix, this.props.id].join('');
+        height = 504;
         item = <video
           id={id}
           ref={id}
           controls
-          height={504}
+          height={height}
           width={672}
           preload="auto"
           className="video-js vjs-default-skin slider__content"
           data-setup={JSON.stringify({techOrder: ['youtube'], src: this.props.item.value})}
+          />;
+        break;
+      case 'vimeo':
+        height = 504;
+        id = [prefix, this.props.id].join('');
+        item = <video
+          id={id}
+          ref={id}
+          controls
+          height={height}
+          width={672}
+          preload="auto"
+          className="video-js vjs-default-skin slider__content"
+          data-setup={JSON.stringify({techOrder: ['vimeo'], src: this.props.item.value})}
           />;
         break;
       default:

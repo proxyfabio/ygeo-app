@@ -25,6 +25,7 @@
     "react-router": "^0.13.2",
     "react-typeahead": "git+https://github.com/proxyfabio/react-typeahead.git#develop",
     "react-gemini-scrollbar": "git+https://github.com/proxyfabio/react-gemini-scrollbar.git#develop",
+    "videojs-vimeo": "git+https://github.com/proxyfabio/videojs-vimeo.git#develop",
     "superagent": "^1.2.0",
     "video.js": "^4.12.5",
     "videojs-youtube": "^1.2.10"

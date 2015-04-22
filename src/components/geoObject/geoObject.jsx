@@ -14,10 +14,6 @@ export default class geoObject extends React.Component {
       var {schedule, schedule_time, address, phone} = tvs;
     }
 
-    function createMarkup(markup) {
-      return {__html:  markup};
-    }
-
     let ns = 'geoObject';
     return <section className={ns + '__section'}>
       <div className={ns + '__header'}>
@@ -32,15 +28,6 @@ export default class geoObject extends React.Component {
 
         <div className={ns + '__slider'}>
           <IMediaSlider/>
-
-          <div className={ns + '__nav'}>
-            <a href="#" onClick={this.switchToPhoto} className="geoObject__photo geoObject__item geoObject__item--active">Фото</a>
-            <a href="#" onClick={this.switchToPhoto} className="geoObject__video geoObject__item">Видео</a>
-            <div className="geoObject__pager">
-              1 / 2
-            </div>
-          </div>
-
         </div>
 
         <div className={ns + '__info'}>

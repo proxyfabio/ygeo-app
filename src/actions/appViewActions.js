@@ -49,5 +49,12 @@ export default {
 
   getActualBanner: ActionCreator.create(function(params) {
     API.getBanner(params);
+  }),
+
+  switchGallery: ActionCreator.create(function(params) {
+    Dispatcher.handleViewAction({
+      data: params,
+      actionType: ActionTypes.CHANGE_SLIDER_MEDIATYPE
+    });
   })
 };

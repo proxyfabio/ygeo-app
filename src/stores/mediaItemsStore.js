@@ -5,78 +5,102 @@ import Dispatcher from '../core/dispatcher.js';
 import ActionTypes from '../constants/actions.js';
 import ICollection from './models/mediaItems.js';
 
+var mode = 'photo';
 var iState = ICollection;
 class MediaItemsStore extends Store {
-  getState() {
-    return iState;
-  }
+	getState() {
+		return iState;
+	}
 
-  getItem(id) {
-    return iState.get(id);
-  }
+	getItem(id) {
+		return iState.get(id)[mode];
+	}
 
-  saveMediaItems(el) {
-    let data = []
-      .concat(this.parseMediaItems('photos', 'image', el.tvs))
-      .concat(this.parseMediaItems('videos', 'url', el.tvs));
+	getMode() {
+    return mode;
+	}
 
-    iState = iState.set(el.id, data);
-  }
+	parseGeoObjectMedia(data) {
+		// flush the store
+		iState = iState.clear();
+		data.map((el) => {
+			this.saveMediaItems(el);
+		}, this);
+	}
 
-  parseMediaItems(key, name, data) {
-    if (!data) {
-      return [];
-    }
-    // else
-    let json = data[key];
-    if (!json) {
-      return [];
-    }
-    // else
-    return JSON.parse(json).map((el) => {
-      let type;
-      let value = el[name];
+	saveMediaItems(el) {
+		let photo = this.parseMediaItems('photos', 'image', el.tvs);
+		let video = this.parseMediaItems('videos', 'url', el.tvs);
 
-      switch (name) {
-        case 'url':
-          type = 'youtube';
-          break;
-        default:
-          type = 'image';
-          break;
-      }
-      return {
-        type, value
-      };
-    });
-  }
+		iState = iState.set(el.id, {
+			video, photo
+		});
+	}
+
+	parseMediaItems(key, name, data) {
+		if (!data) {
+			return [];
+		}
+		// else
+		let json = data[key];
+		if (!json) {
+			return [];
+		}
+		// else
+		return JSON.parse(json).map((el) => {
+			let type;
+			let value = el[name];
+
+			switch (name) {
+				case 'url':
+
+          if(value.match(/vimeo/)){
+            type = 'vimeo';
+          }else{
+            type = 'youtube';
+          }
+
+					break;
+				default:
+					type = 'image';
+					break;
+			}
+			return {
+				type, value
+			};
+		});
+	}
 
 }
 
 var mediaItemsStore = new MediaItemsStore();
 
 mediaItemsStore.dispatchToken = Dispatcher.register(function(payload) {
-  let action = payload.action;
-  switch (action.actionType) {
+	let action = payload.action;
+	switch (action.actionType) {
+		case ActionTypes.GO_UPDATECOLLECTION:
+			// flush the store
+			// iState = iState.clear();
+			// action.data.map((el) => {
+			//   mediaItemsStore.saveMediaItems(el);
+			// });
 
-    case ActionTypes.GO_UPDATECOLLECTION:
-      // flush the store
-      iState = iState.clear();
+			// mediaItemsStore.emitChange();
+			break;
 
-      action.data.map((el) => {
-        mediaItemsStore.saveMediaItems(el);
-      });
+		case ActionTypes.GO_GET:
+			mediaItemsStore.parseGeoObjectMedia(action.data);
+			mediaItemsStore.emitChange();
+			break;
 
-      mediaItemsStore.emitChange();
-      break;
+		case ActionTypes.CHANGE_SLIDER_MEDIATYPE:
+			mode = action.data;
+			mediaItemsStore.emitChange();
+			break;
 
-    case ActionTypes.GO_GET:
-      mediaItemsStore.emitChange();
-      break;
+	}
 
-  }
-
-  return true;
+	return true;
 });
 
 export default mediaItemsStore;
