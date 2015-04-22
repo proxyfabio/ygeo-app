@@ -14,12 +14,14 @@ function parseGO(argument) {
   let data = {
     id: argument.id,
     category: argument.category,
-    icon: arguments.category_icon,
-    legend_icon: arguments.category_legend_icon
+    icon: argument.legend_icon,
+    legend_icon: argument.legend_icon
   };
 
   Object.keys(tvs).map((key) => {
-    data[key] = tvs[key] || null;
+    if(!data.hasOwnProperty(key)){
+      data[key] = tvs[key] || null;
+    }
   });
 
   return data;

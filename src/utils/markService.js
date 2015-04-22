@@ -62,8 +62,8 @@ export default class markService {
       size = [36, 26];
       offset = [-18, -26];
     } else {
-      size = [48, 70];
-      offset = [-24, -70];
+      size = [48, 48];
+      offset = [-24, -24];
     }
 
     return {
