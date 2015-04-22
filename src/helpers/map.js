@@ -8,6 +8,9 @@ export default function(callback) {
       controls: [
         'zoomControl'
       ]
+    }, {
+      adjustZoomOnTypeChange: true,
+      restrictMapArea: true
     });
     return window.currentMap;
   }
