@@ -59,11 +59,11 @@ export default class markService {
 
     let size, offset;
     if (!data.icon || !data.icon.match(/active.*$/)) {
-      size = [36, 26];
+      size = [32, 32];
       offset = [-18, -26];
     } else {
-      size = [48, 48];
-      offset = [-24, -24];
+      size = [48, 72];
+      offset = [-24, -31];
     }
 
     return {
