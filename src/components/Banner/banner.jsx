@@ -4,18 +4,26 @@ import Action from '../../actions/appViewActions.js';
 import BannerStore from '../../stores/bannerStore.js';
 import './banner.styl';
 
+import 'react/addons';
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 export default class Promo extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			image: '',
 			text: '',
-			title: ''
+			title: '',
+			visibility: true
 		};
 	}
 
 	componentDidMount() {
 		Action.getActualBanner(this.context.router.getCurrentParams());
+
+		setInterval(function(){
+			Action.getActualBanner(this.context.router.getCurrentParams());
+		}.bind(this), 10000);
 	}
 
 	componentWillMount() {
@@ -30,17 +38,26 @@ export default class Promo extends React.Component {
 		this.setState(BannerStore.getState());
 	}
 
+	handlecloseBanner(){
+		this.setState({visibility: false});
+	}
+
 	render(){
-    return <section className='promo'>
-			<div className="promo__close"></div>
+		var className = '';
+		if(!this.state.visibility){
+			className += ' off';
+		}
+
+    return <section className={'promo' + className}>
+			<div className="promo__close" onClick={this.handlecloseBanner.bind(this)}></div>
 			<a href="javascript:void(0)">
-				<img src={this.state.image}/>
+				<img src={this.state.image} className={className} />
 				<div className="promo__text">
 					<h2>{this.state.title}</h2>
 					<p>{this.state.text}</p>
 				</div>
 			</a>
-    </section>;
+		</section>;
   }
 }
 

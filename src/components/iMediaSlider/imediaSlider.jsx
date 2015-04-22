@@ -119,7 +119,7 @@ export default class IMediaSlider extends React.Component {
           {this.state.active} / {media.length}
         </div>
       </div>
-    </section>
+    </section>;
   }
 }
 
