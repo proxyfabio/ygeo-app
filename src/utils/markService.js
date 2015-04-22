@@ -1,5 +1,13 @@
 import helpers from '../helpers/pathHelpers.js';
 
+// allow to revert coordinates
+function parseCoords(string) {
+  let originalGeometry = string.split(',');
+  return originalGeometry.map((el, i, arr) => {
+    return arr[arr.length - 1 - i];
+  });
+}
+
 export default class markService {
   constructor() {
     this.provider = null;
@@ -37,8 +45,8 @@ export default class markService {
         console.warn('coordinates !defined');
       }
     } else {
-      let Mark = new this.source.Placemark(data.coordinates.split(','), this.prepareProps(data), this.prepareOptions(data));
-      if(this.events){
+      let Mark = new this.source.Placemark(parseCoords(data.coordinates), this.prepareProps(data), this.prepareOptions(data));
+      if(this.events && !data.disallowEvents){
         Object.keys(this.events).map((el) => {
           Mark.events.add(el.split(','), this.events[el]);
         });
