@@ -13,7 +13,6 @@ function mapRefs(func) {
 
 function bindVideojs() {
   mapRefs.call(this, function(ref){
-    console.log(ref.getDOMNode());
     if(ref.getDOMNode().id){
       videojs(ref.getDOMNode().id);
     }
