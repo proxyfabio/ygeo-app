@@ -12,7 +12,7 @@ export default class MapLegendSection extends React.Component {
     return <li className="legend__item legend__category">
       <a
         className="legend__link"
-        href="#"
+        href="javascript:void(0)"
         onClick={this.showGeoCollection.bind(this, this.props)}
       >
         <span className="link__ico"><img src={this.props.icon} /></span>

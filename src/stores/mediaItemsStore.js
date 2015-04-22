@@ -22,7 +22,7 @@ class MediaItemsStore extends Store {
 
 	parseGeoObjectMedia(data) {
 		// flush the store
-		iState = iState.clear();
+		// iState = iState.clear();
 		data.map((el) => {
 			this.saveMediaItems(el);
 		}, this);

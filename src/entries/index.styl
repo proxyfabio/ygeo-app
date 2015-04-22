@@ -1,5 +1,6 @@
 @import '../styles/theme.styl'
 @import "~lost-grid/stylus/lost.styl"
+@import '../assets/animations.css'
 
 html
 body
@@ -12,7 +13,6 @@ body
   height 1920px
   margin 0 auto
   min-height 100%
-  // overflow hidden
   padding 0
   position relative
   width 1080px
@@ -23,4 +23,18 @@ body
   border 0
 
 .app
+  position relative
+
+.block
+  display block !important
+  opacity 1 !important
+  visibility true
+
+.none
+  display none
+
+.absolute
+  position absolute
+
+.relative
   position relative

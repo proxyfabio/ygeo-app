@@ -2,6 +2,7 @@ import Actions from '../../actions/appViewActions.js';
 import React from 'react';
 import {RouteHandler} from 'react-router';
 import SearchForm from '../SearchForm/searchform.jsx';
+import {animateRef} from '../../helpers/animationHelpers.js';
 
 import searchStore from '../../stores/searchStore.js';
 import SearchGOsStore from '../../stores/searchGeoObjectsStore.js';
@@ -40,6 +41,8 @@ export default React.createClass({
 
   componentDidMount() {
     Actions.clickKeybordButton('');
+
+    animateRef.call(this, 'search', 100, ['absolute', 'slideDown']);
   },
 
   componentWillMount() {
@@ -79,7 +82,7 @@ export default React.createClass({
 
   render(){
     return <section className="quickSearch">
-      <div className="quickSearch__image"></div>
+      <div ref="search" className="quickSearch__image"></div>
       <SearchForm
         options={this.state.options}
         entryValue={this.state.entryValue}

@@ -5,6 +5,7 @@ import Typeahead from 'react-typeahead/lib/typeahead/index.js';
 import IKeyboard from '../iKeyboard/ikeyboard.jsx';
 import searchStore from '../../stores/searchStore.js';
 import SearchGOsStore from '../../stores/searchGeoObjectsStore.js';
+import {animateRef} from '../../helpers/animationHelpers.js';
 
 export default class Search extends React.Component {
 
@@ -39,8 +40,12 @@ export default class Search extends React.Component {
     return this.getTypeaheadInstance().refs.entry.getDOMNode().value;
   }
 
+  componentDidMount() {
+    animateRef.call(this, 'form', 400, ['block', 'slideUp']);
+  }
+
   render(){
-    return <form method="post" onSubmit={this.handleSubmit.bind(this)} className="quickSearch__section">
+    return <form ref="form" method="post" onSubmit={this.handleSubmit.bind(this)} className="quickSearch__section">
       <Typeahead
         ref="query"
         name="query"
