@@ -1,6 +1,15 @@
 @import "~lost-grid/stylus/lost.styl"
 @import "~gemini-scrollbar/gemini-scrollbar.css"
 
+gm-scrollbar-bg()
+  opacity: 1;
+  background-image: -ms-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
+  background-image: -moz-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
+  background-image: -o-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #E5E5E5), color-stop(1, #F9F9F9));
+  background-image: -webkit-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
+  background-image: linear-gradient(to right, #E5E5E5 0%, #F9F9F9 100%);
+
 .geoObject
   &__header
     position absolute
@@ -25,7 +34,7 @@
 
   &__wrapper
     width 672px
-    height 1329px
+    // height 1329px
     position absolute
     top 360px
     left 48px
@@ -64,11 +73,11 @@
       &:before
         content: ' ';
         -webkit-filter: blur(10px);
-        background-color: rgba(113, 113, 113, 0.89);
+        background-color: rgma(113, 113, 113, 0.89);
         width: 100%;
         height: inherit;
         position: absolute;
-        background: linear-gradient(135deg, rgb(119, 119, 119), rgba(110, 110, 110, 0.7));
+        background: linear-gradient(135deg, rgm(119, 119, 119), rgma(110, 110, 110, 0.7));
 
       &:after
         display: block;
@@ -139,7 +148,8 @@
   &__info
     width 100%
     display table
-    font-size14px
+    font-size 14px
+    background-color #fff
     font-family 'HeliosCondLightC'
 
     & [class*="__dest"]
@@ -211,19 +221,20 @@
       cursor pointer
 
   .gm-scrollbar-container
-    padding: 15px 70px 0 48px;
+    padding: 45px 70px 0 48px;
     position: relative;
     box-sizing: border-box;
-    height: 610px;
+    height: 580px;
     opacity 0.01
+    overflow normal !important
 
   &__content
     width 554px
     height auto
     overflow hidden
 
-  /* vertical scrollbar track */
-  .gm-scrollbar.-vertical
+  .gm-scrollbar-bg
+    gm-scrollbar-bg()
     position: absolute;
     width: 48px;
     height: auto;
@@ -232,8 +243,38 @@
     right: 0;
     bottom: 0;
 
+
+  /* vertical scrollbar track */
+  .gm-scrollbar.-vertical
+    width 48px
+    height: auto;
+    left: auto;
+    top: 0;
+    right: 0;
+    margin 48px 0
+    bottom: 0;
+
   .gm-scrollbar.-horizontal
     display none
+
+  .gm-scroll-view
+    height 559px !important
+
+  .gm-arrow
+    width 48px
+    height 48px
+    opacity .5
+    display block
+    position absolute
+    right 0
+
+  .gm-arrow-top
+    top 0
+    background: url(../../images/scroll_up.png) center center no-repeat
+
+  .gm-arrow-bottom
+    bottom 0
+    background: url(../../images/scroll_down.png) center center no-repeat
 
   /* scrollbar thumb */
   .gm-scrollbar .thumb
@@ -251,34 +292,10 @@
     width:48px
     left:-1px
     top:48px;
-    height: calc(100% - 96px);
-    opacity: 1;
-    background-image: -ms-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
-    background-image: -moz-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
-    background-image: -o-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #E5E5E5), color-stop(1, #F9F9F9));
-    background-image: -webkit-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
-    background-image: linear-gradient(to right, #E5E5E5 0%, #F9F9F9 100%);
+    height: calc(100% - 96px)
 
-  .gm-scrollbar.-vertical .arrow-top
-    background: url(../../images/scroll_up.png) center center no-repeat !important;
-    width: 48px !important;
-    height: 48px !important;
-    background-color: transparent !important;
-    opacity: .5 !important;
-    display:block;
-    left:-1px
-
-  .gm-scrollbar.-vertical .arrow-bottom
-    left:-1px
-    background: url(../../images/scroll_down.png) center center no-repeat !important;
-    width: 48px !important;
-    height: 48px !important;
-    background-color: transparent !important;
-    opacity: .5 !important;
-    display:block;
-    position:absolute;
-    bottom 0
+  .geoObject__content
+    padding-bottom 15px
 
   &__pager
     text-align: right;
