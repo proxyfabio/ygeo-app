@@ -1,22 +1,15 @@
-import Actions from '../../actions/appViewActions.js';
-import MapLegendItem from '../MapLegendItem/mapLegendItem.jsx';
 import React from 'react';
 
 export default class MapLegendSection extends React.Component {
-
-  showGeoCollection(props){
-    Actions.showActivegeoObjectsCollection({id: props.SectionId});
-  }
-
   render(){
-    return <li className="legend__item legend__category">
+    return <li className={'legend__item legend__category' + this.props.active}>
       <a
         className="legend__link"
         href="javascript:void(0)"
-        onClick={this.showGeoCollection.bind(this, this.props)}
+        onClick={this.props.onCategoryClick}
       >
         <span className="link__ico"><img src={this.props.icon} /></span>
-        {this.props.SectionName}
+        {this.props.sectionName}
       </a>
     </li>;
   }

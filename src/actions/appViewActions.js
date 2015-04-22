@@ -27,7 +27,7 @@ export default {
 
   showActivegeoObjectsCollection: ActionCreator.create((data) => {
     Dispatcher.handleViewAction({
-      id: data.id,
+      list: data.list,
       actionType: ActionTypes.GO_GETACTIVECOLLECTION
     });
   }),

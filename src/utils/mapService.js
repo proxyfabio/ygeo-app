@@ -41,6 +41,8 @@ export default class mapService {
     this.provider = null;
     this.source = null;
 
+    this.autoAdjustBounds = true;
+
     Object.keys(props).map((prop) => {
       if (!this.hasOwnProperty(prop)) {
         this[prop] = props[prop];
@@ -102,7 +104,12 @@ export default class mapService {
     return this;
   }
 
+  getCurrentBounds(){
+    return this.provider.geoObjects.getBounds();
+  }
+
   renderGeoObjects(list) {
+
     list.map((el) => {
       let data = parseGO(el);
 
@@ -110,6 +117,10 @@ export default class mapService {
         this.renderGO(data);
       }
     }, this);
+
+    let newBounds = this.getCurrentBounds();
+    this.autoAdjustBounds && newBounds && this.provider.setBounds(newBounds);
+
     return this;
   }
 

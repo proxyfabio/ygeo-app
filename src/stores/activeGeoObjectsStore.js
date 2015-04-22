@@ -1,10 +1,9 @@
 'use strict';
-
-import Store from '../core/store.js'
-import Dispatcher from '../core/dispatcher.js'
-import ActionTypes from '../constants/actions.js'
-import ICollection from './models/activeGeoObjects.js'
-import GOCollectionStore from './geoObjectsStore.js'
+import Store from '../core/store.js';
+import Dispatcher from '../core/dispatcher.js';
+import ActionTypes from '../constants/actions.js';
+import ICollection from './models/activeGeoObjects.js';
+import GOCollectionStore from './geoObjectsStore.js';
 
 var iState = ICollection;
 class ActiveGeoObjectsStore extends Store {
@@ -17,6 +16,7 @@ var activeGOCollectionStore = new ActiveGeoObjectsStore();
 
 activeGOCollectionStore.dispatchToken = Dispatcher.register(function(payload) {
   let action = payload.action;
+
   switch (action.actionType) {
 
     case ActionTypes.GO_GETACTIVECOLLECTION:
@@ -26,7 +26,7 @@ activeGOCollectionStore.dispatchToken = Dispatcher.register(function(payload) {
       // iterate
       GOCollectionStore.getState().map((el) => {
         // add new
-        if (el.category_id === action.id) {
+        if (action.list.indexOf(el.category_id) !== -1) {
           iState = iState.push(el);
         }
       });
@@ -38,4 +38,4 @@ activeGOCollectionStore.dispatchToken = Dispatcher.register(function(payload) {
   return true;
 });
 
-export default activeGOCollectionStore
+export default activeGOCollectionStore;
