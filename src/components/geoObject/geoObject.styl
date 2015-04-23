@@ -103,7 +103,7 @@ height = 550px
           height 100%
           top 0
           left 0
-          background url(../../images/ico_video.png) center -76px no-repeat
+          background url(../../images/ico_video.png) center 15px no-repeat
           z-index 10
 
         &[class*="__photo"]:before
@@ -114,17 +114,17 @@ height = 550px
           height 100%
           top 0
           left 0
-          background url(../../images/ico_photo.png) center -71px no-repeat
+          background url(../../images/ico_photo.png) center 20px no-repeat
           z-index 10
 
         &.geoObject__photo.geoObject__item--active:before
-          background url(../../images/ico_photo.png) center 20px no-repeat
+          background url(../../images/ico_photo.png) center -71px no-repeat
 
         &.geoObject__video.geoObject__item--active:before
-          background url(../../images/ico_video.png) center 15px no-repeat
+          background url(../../images/ico_video.png) center -76px no-repeat
 
         &.geoObject__item--active:after
-          background-color #ffffff
+          background-color #27720c
 
         &:after
           display block
@@ -134,7 +134,7 @@ height = 550px
           height 100%
           top 0
           left 0
-          background-color #27720c
+          background-color #ffffff
           opacity .6
 
   &__info
