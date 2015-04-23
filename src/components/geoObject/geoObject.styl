@@ -1,6 +1,8 @@
 @import "~lost-grid/stylus/lost.styl"
 @import "~gemini-scrollbar/gemini-scrollbar.css"
 
+height = 550px
+
 .geoObject
   &__header
     position absolute
@@ -35,7 +37,6 @@
     color #333333
     box-shadow 0 0 178px -20px #000
     overflow hidden
-    padding-bottom 25px
 
   & [class*="__close"]
     position absolute
@@ -211,22 +212,36 @@
       text-decoration underline
       cursor pointer
 
-  &__content
-    width 554px
-    height auto
-    overflow hidden
-    padding-bottom 15px
+.geoObject__content
+  width 554px
+  height auto
+  overflow hidden
+  padding-bottom 15px
 
-  &__pager
-    text-align right
-    font-size 24px
-    letter-spacing -1px
-    color #fff
-    position absolute
-    bottom 0px
-    left 290px
-    height 80px
-    width auto
-    padding 0 32px 0
-    line-height 80px
-    z-index 1000
+.geoObject__pager
+  text-align right
+  font-size 24px
+  letter-spacing -1px
+  color #fff
+  position absolute
+  bottom 0px
+  left 290px
+  height 80px
+  width auto
+  padding 0 32px 0
+  line-height 80px
+  z-index 1000
+
+.geoObject .gm-scroll-view
+  transition opacity 1s ease
+  height height !important
+  overflow overlay
+  padding-top 0
+  box-sizing border-box
+  height 504px !important
+  border-bottom 25px solid #f9f9f9
+
+.geoObject .gm-scrollbar-container
+  transition opacity 1s ease
+  height height
+  padding-bottom 30px

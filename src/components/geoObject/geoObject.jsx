@@ -11,7 +11,6 @@ export default class geoObject extends React.Component {
     animateRef.call(this, 'title', 1000, ['slideDown']);
     animateRef.call(this, 'info', 600, ['slideDown']);
     animateRef.call(this, 'routes', 600, ['slideDown']);
-    animateRef.call(this, 'content', 1300, ['slideUp']);
   }
 
   render(){
