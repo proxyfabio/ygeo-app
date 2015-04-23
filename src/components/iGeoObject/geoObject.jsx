@@ -61,7 +61,12 @@ let GeoObject = React.createClass({
 
   render () {
     return <section className='geoObject'>
-      <GO Data={this.state.go} media={mediaItemsStore.getState()} />
+      <GO Data={this.state.go}
+        media={mediaItemsStore.getState()}
+        mode={mediaItemsStore.getMode()}
+        activePhoto={mediaItemsStore.getActive('photo')}
+        activeVideo={mediaItemsStore.getActive('video')}
+        />
     </section>;
   }
 });

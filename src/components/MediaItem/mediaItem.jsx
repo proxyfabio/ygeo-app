@@ -1,5 +1,5 @@
-import React from 'react';
 import './mediaItem.styl';
+import React from 'react';
 import videojs from 'video.js';
 import 'videojs-youtube';
 import 'videojs-vimeo/vjs.vimeo.js';
@@ -13,7 +13,8 @@ function mapRefs(func) {
 
 function bindVideojs() {
   mapRefs.call(this, function(ref){
-    if(ref.getDOMNode().id){
+    let node = ref.getDOMNode();
+    if(node.id && !node.player){
       videojs(ref.getDOMNode().id);
     }
   });
@@ -21,25 +22,18 @@ function bindVideojs() {
 
 function unbindVideojs() {
   mapRefs.call(this, function(ref){
-    let player = ref.getDOMNode().player;
-    if(player){
-      player.dispose();
+    let node = ref.getDOMNode();
+    if(node.player){
+      node.player.dispose();
+      node.remove();
     }
   });
 }
 
 export default class MediaItem extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      item: null
-    };
-  }
 
   componentDidMount() {
-    this.setState({
-      item: this.prerenderItem()
-    });
+    bindVideojs.call(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -55,6 +49,11 @@ export default class MediaItem extends React.Component {
     let height;
     let prefix = 'video';
     var id;
+
+    if(!this.props.item){
+      return <div width={672} height={504} className="mediaItem--empty"/>;
+    }
+
     switch (this.props.item.type){
       case 'youtube':
         id = [prefix, this.props.id].join('');

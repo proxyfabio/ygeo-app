@@ -36,7 +36,7 @@ export default class geoObject extends React.Component {
         <Link to="app" className={ns + '__close'}></Link>
 
         <div className={ns + '__slider'}>
-          <IMediaSlider id={Number(id)} media={this.props.media}/>
+          <IMediaSlider id={Number(id)} {...this.props} />
         </div>
 
         <div ref="info" className={ns + '__info'}>

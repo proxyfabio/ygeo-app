@@ -7,44 +7,51 @@ import 'react/addons';
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 export default class IMediaSlider extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      active: 1,
-      mode: 'photo'
-    };
-  }
 
   switchToPhoto(){
-    this.setState({mode: 'photo', active: 1});
-    Actions.switchGallery('photo');
+    Actions.switchGallery({
+      type: 'photo',
+      active: this.props.activePhoto
+    });
   }
 
   switchToVideo(){
-    this.setState({mode: 'video', active: 1});
-    Actions.switchGallery('video');
+    Actions.switchGallery({
+      type: 'video',
+      active: this.props.activeVideo
+    });
   }
 
-  getMedia(state){
-    return state.get(this.props.id)[this.state.mode];
+  getMedia(istate){
+    return istate.get(this.props.id)[this.props.mode];
+  }
+
+  getActive(){
+    return this.props.mode === 'video' ? this.props.activeVideo : this.props.activePhoto;
   }
 
   handleClickLeft() {
     let media = this.getMedia(this.props.media);
-    let active = this.state.active - 1;
+    let active = this.getActive() - 1;
     if(active <= 0){
       active = media.length;
     }
-    this.setState({active});
+    Actions.switchGallery({
+      type: this.props.mode,
+      active
+    });
   }
 
   handleClickRight() {
     let media = this.getMedia(this.props.media);
-    let active = this.state.active + 1;
+    let active = this.getActive() + 1;
     if(active > media.length){
       active = 1;
     }
-    this.setState({active});
+    Actions.switchGallery({
+      type: this.props.mode,
+      active
+    });
   }
 
   render(){
@@ -53,23 +60,20 @@ export default class IMediaSlider extends React.Component {
     }
 
     let media = this.getMedia(this.props.media);
-    let active = this.state.active;
-
-    // TODO: make a toggle class helper instead of this odd code
-    let classProperty = 'geoObject__item--active';
-    var photoActive = '';
-    var videoActive = '';
-    if(this.state.mode === 'photo'){
-      photoActive = classProperty;
-      videoActive = '';
-    }else {
-      videoActive = classProperty;
-      photoActive = '';
-    }
+    let active = this.props.mode === 'video' ? this.props.activeVideo : this.props.activePhoto;
 
     if(media.length > 1){
       var left = <span className="slider__ruler slider__left" onClick={this.handleClickLeft.bind(this)}>&#x25C4;</span>;
       var right = <span className="slider__ruler slider__right" onClick={this.handleClickRight.bind(this)}>&#x25BA;</span>;
+    }
+
+    function getActiveClass(type){
+      let activeClass = (this.props.mode === type) ? 'geoObject__item--active' : '';
+      return [
+        'geoObject__item',
+        activeClass,
+        'geoObject__' + type
+      ].join(' ');
     }
 
     return <section className="slider">
@@ -79,8 +83,14 @@ export default class IMediaSlider extends React.Component {
       </ReactCSSTransitionGroup>
       {right}
       <div className='geoObject__nav'>
-        <a href="javascript:void(0)" onClick={this.switchToPhoto.bind(this)} className={"geoObject__photo geoObject__item " + photoActive}>Фото</a>
-        <a href="javascript:void(0)" onClick={this.switchToVideo.bind(this)} className={"geoObject__video geoObject__item " + videoActive}>Видео</a>
+        <a href="javascript:void(0)"
+          onClick={this.switchToPhoto.bind(this)}
+          className={getActiveClass.call(this, 'photo')}
+          >Фото</a>
+        <a href="javascript:void(0)"
+          onClick={this.switchToVideo.bind(this)}
+          className={getActiveClass.call(this, 'video')}
+          >Видео</a>
         <div className="geoObject__pager">
           {active} / {media.length}
         </div>
@@ -91,5 +101,6 @@ export default class IMediaSlider extends React.Component {
 
 IMediaSlider.propTypes = {
   media: React.PropTypes.object,
+  mode: React.PropTypes.string,
   id: React.PropTypes.number
 };

@@ -5,7 +5,10 @@ import Dispatcher from '../core/dispatcher.js';
 import ActionTypes from '../constants/actions.js';
 import ICollection from './models/mediaItems.js';
 
+var lastId = 0;
 var mode = 'photo';
+var activeVideo = 1;
+var activePhoto = 1;
 var iState = ICollection;
 class MediaItemsStore extends Store {
 	getState() {
@@ -13,7 +16,6 @@ class MediaItemsStore extends Store {
 	}
 
 	getItem(id) {
-		console.log(iState);
 		return iState.get(id)[mode];
 	}
 
@@ -21,10 +23,21 @@ class MediaItemsStore extends Store {
     return mode;
 	}
 
+	getActive(type) {
+		return type === 'video' ? activeVideo : activePhoto;
+	}
+
 	parseGeoObjectMedia(data) {
-		// flush the store
-		// iState = iState.clear();
 		data.map((el) => {
+			// flush the store
+			if(lastId !== el.id){
+				iState = iState.clear();
+				mode = 'photo';
+				activeVideo = 1;
+				activePhoto = 1;
+				lastId = el.id;
+			}
+
 			this.saveMediaItems(el);
 		}, this);
 	}
@@ -79,15 +92,6 @@ var mediaItemsStore = new MediaItemsStore();
 mediaItemsStore.dispatchToken = Dispatcher.register(function(payload) {
 	let action = payload.action;
 	switch (action.actionType) {
-		case ActionTypes.GO_UPDATECOLLECTION:
-			// flush the store
-			// iState = iState.clear();
-			// action.data.map((el) => {
-			//   mediaItemsStore.saveMediaItems(el);
-			// });
-
-			// mediaItemsStore.emitChange();
-			break;
 
 		case ActionTypes.GO_GET:
 			mediaItemsStore.parseGeoObjectMedia(action.data);
@@ -95,7 +99,12 @@ mediaItemsStore.dispatchToken = Dispatcher.register(function(payload) {
 			break;
 
 		case ActionTypes.CHANGE_SLIDER_MEDIATYPE:
-			mode = action.data;
+			mode = action.data.type;
+			if(mode === 'video'){
+				activeVideo = action.data.active;
+			}else{
+				activePhoto = action.data.active;
+			}
 			mediaItemsStore.emitChange();
 			break;
 
