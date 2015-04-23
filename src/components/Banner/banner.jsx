@@ -21,11 +21,19 @@ export default class Promo extends React.Component {
 	}
 
 	componentDidMount() {
-		Action.getActualBanner(this.context.router.getCurrentParams());
+		import Env from '../../helpers/globalData.js';
+		var data = this.context.router.getCurrentParams();
+		data.resId = Env.AppId;
+
+		Action.getActualBanner(data);
 
 		setInterval(function(){
-			Action.getActualBanner(this.context.router.getCurrentParams());
-		}.bind(this), 10000);
+			Action.getActualBanner(data);
+		}, 10000);
+
+		setInterval(function(){
+			this.setState({visibility:true});
+		}.bind(this),1000*60*5);
 	}
 
 	componentWillMount() {
@@ -48,6 +56,10 @@ export default class Promo extends React.Component {
 		let className = '';
 		if(!this.state.visibility){
 			className += ' off';
+		}
+
+		if(!this.state.image){
+			return false;
 		}
 
     return <section className={'promo' + className}>
