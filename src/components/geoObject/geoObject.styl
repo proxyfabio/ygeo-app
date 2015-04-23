@@ -233,7 +233,8 @@ height = 550px
   z-index 1000
 
 .geoObject .gm-scroll-view
-  transition opacity 1s ease
+  transition opacity 1s linear
+  opacity 0
   height height !important
   overflow overlay
   padding-top 0
@@ -242,6 +243,10 @@ height = 550px
   border-bottom 25px solid #f9f9f9
 
 .geoObject .gm-scrollbar-container
-  transition opacity 1s ease
   height height
+  opacity 0
   padding-bottom 30px
+
+.geoObject--active
+  .gm-scroll-view
+    opacity 1
