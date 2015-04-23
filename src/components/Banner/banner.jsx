@@ -2,6 +2,7 @@
 import React from 'react';
 import Action from '../../actions/appViewActions.js';
 import BannerStore from '../../stores/bannerStore.js';
+import {Link} from 'react-router';
 import './banner.styl';
 
 import 'react/addons';
@@ -11,8 +12,9 @@ export default class Promo extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			id: 0,
 			image: '',
-			text: '',
+			introtext: '',
 			title: '',
 			visibility: true
 		};
@@ -43,20 +45,20 @@ export default class Promo extends React.Component {
 	}
 
 	render(){
-		var className = '';
+		let className = '';
 		if(!this.state.visibility){
 			className += ' off';
 		}
 
     return <section className={'promo' + className}>
 			<div className="promo__close" onClick={this.handlecloseBanner.bind(this)}></div>
-			<a href="javascript:void(0)">
+			<Link to="promo" params={{promoId: this.state.id}}>
 				<img src={this.state.image} className={className} />
 				<div className="promo__text">
 					<h2>{this.state.title}</h2>
-					<p>{this.state.text}</p>
+					<p>{this.state.introtext}</p>
 				</div>
-			</a>
+			</Link>
 		</section>;
   }
 }

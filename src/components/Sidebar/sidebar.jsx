@@ -56,9 +56,9 @@ export default class Sidebar extends React.Component {
               active={active}
               icon={_groups[key].legend_icon}
               onCategoryClick={this.handleCategoryClick.bind(this, sectionId)}
-            />;
-        }, this)}
-      </ul>
+              />;
+          }, this)}
+        </ul>
       </nav>
     </aside>;
   }

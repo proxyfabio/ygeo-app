@@ -1,5 +1,6 @@
 var React = require('react');
 var GeminiScrollbar = require('gemini-scrollbar');
+import './geminiScrollbar.styl';
 
 module.exports = React.createClass({
   displayName: 'GeminiScrollbar',

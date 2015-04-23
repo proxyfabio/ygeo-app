@@ -2,5 +2,6 @@ export default {
   index: '/',
   go: '/go/',
   route: '/route/',
-  search: '/search/'
+  search: '/search/',
+  promo: '/promo/'
 };

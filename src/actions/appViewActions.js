@@ -47,6 +47,10 @@ export default {
     });
   }),
 
+  getBanner: ActionCreator.create(function (params) {
+    API.getBannerById(params);
+  }),
+
   getActualBanner: ActionCreator.create(function(params) {
     API.getBanner(params);
   }),

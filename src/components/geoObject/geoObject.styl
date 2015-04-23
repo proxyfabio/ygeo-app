@@ -1,15 +1,6 @@
 @import "~lost-grid/stylus/lost.styl"
 @import "~gemini-scrollbar/gemini-scrollbar.css"
 
-gm-scrollbar-bg()
-  opacity: 1;
-  background-image: -ms-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
-  background-image: -moz-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
-  background-image: -o-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #E5E5E5), color-stop(1, #F9F9F9));
-  background-image: -webkit-linear-gradient(left, #E5E5E5 0%, #F9F9F9 100%);
-  background-image: linear-gradient(to right, #E5E5E5 0%, #F9F9F9 100%);
-
 .geoObject
   &__header
     position absolute
@@ -44,7 +35,7 @@ gm-scrollbar-bg()
     color #333333
     box-shadow 0 0 178px -20px #000
     overflow hidden
-    padding-bottom:25px;
+    padding-bottom 25px
 
   & [class*="__close"]
     position absolute
@@ -71,25 +62,25 @@ gm-scrollbar-bg()
       box-shadow 0 -20px 50px -10px #000 inset
 
       &:before
-        content: ' ';
-        -webkit-filter: blur(10px);
-        background-color: rgma(113, 113, 113, 0.89);
-        width: 100%;
-        height: inherit;
-        position: absolute;
-        background: linear-gradient(135deg, rgm(119, 119, 119), rgma(110, 110, 110, 0.7));
+        content ' '
+        -webkit-filter blur(10px)
+        background-color rgma(113, 113, 113, 0.89)
+        width 100%
+        height inherit
+        position absolute
+        background linear-gradient(135deg, rgm(119, 119, 119), rgma(110, 110, 110, 0.7))
 
       &:after
-        display: block;
-        content: " ";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
-        background-color: #fff;
-        opacity: .3;
-        z-index: 0;
+        display block
+        content " "
+        position absolute
+        width 100%
+        height 100%
+        left 0
+        top 0
+        background-color #fff
+        opacity .3
+        z-index 0
 
       & > a
         display block
@@ -126,13 +117,13 @@ gm-scrollbar-bg()
           z-index 10
 
         &.geoObject__photo.geoObject__item--active:before
-          background: url(../../images/ico_photo.png) center 20px no-repeat;
+          background url(../../images/ico_photo.png) center 20px no-repeat
 
         &.geoObject__video.geoObject__item--active:before
-          background: url(../../images/ico_video.png) center 15px no-repeat;
+          background url(../../images/ico_video.png) center 15px no-repeat
 
         &.geoObject__item--active:after
-          background-color: #ffffff;
+          background-color #ffffff
 
         &:after
           display block
@@ -196,7 +187,7 @@ gm-scrollbar-bg()
       & a:hover
       & a:active
         color #000 !important
-        border-color: #000 !important
+        border-color #000 !important
 
     & [class*="__routeDesc"]
       margin 0 55px 0 0
@@ -220,93 +211,22 @@ gm-scrollbar-bg()
       text-decoration underline
       cursor pointer
 
-  .gm-scrollbar-container
-    padding: 45px 70px 0 48px;
-    position: relative;
-    box-sizing: border-box;
-    height: 580px;
-    opacity 0.01
-    overflow normal !important
-
   &__content
     width 554px
     height auto
     overflow hidden
-
-  .gm-scrollbar-bg
-    gm-scrollbar-bg()
-    position: absolute;
-    width: 48px;
-    height: auto;
-    left: auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-
-
-  /* vertical scrollbar track */
-  .gm-scrollbar.-vertical
-    width 48px
-    height: auto;
-    left: auto;
-    top: 0;
-    right: 0;
-    margin 48px 0
-    bottom: 0;
-
-  .gm-scrollbar.-horizontal
-    display none
-
-  .gm-scroll-view
-    height 559px !important
-
-  .gm-arrow
-    width 48px
-    height 48px
-    opacity .5
-    display block
-    position absolute
-    right 0
-
-  .gm-arrow-top
-    top 0
-    background: url(../../images/scroll_up.png) center center no-repeat
-
-  .gm-arrow-bottom
-    bottom 0
-    background: url(../../images/scroll_down.png) center center no-repeat
-
-  /* scrollbar thumb */
-  .gm-scrollbar .thumb
-    cursor: pointer;
-    width: 100%;
-    height: 90px;
-    z-index: 1;
-    background: url(../../images/scroll_poiner.png) center center no-repeat !important;
-    background-color: #ccddc6 !important;
-
-  .gm-scrollbar .thumb:hover
-    background-color: fuchsia;
-
-  .gm-scrollbar.-wrapper
-    width:48px
-    left:-1px
-    top:48px;
-    height: calc(100% - 96px)
-
-  .geoObject__content
     padding-bottom 15px
 
   &__pager
-    text-align: right;
-    font-size: 24px;
-    letter-spacing: -1px;
-    color: #fff;
-    position: absolute;
-    bottom: 0px;
-    left: 290px;
-    height: 80px;
-    width: auto;
-    padding: 0 32px 0;
-    line-height: 80px;
-    z-index: 1000;
+    text-align right
+    font-size 24px
+    letter-spacing -1px
+    color #fff
+    position absolute
+    bottom 0px
+    left 290px
+    height 80px
+    width auto
+    padding 0 32px 0
+    line-height 80px
+    z-index 1000

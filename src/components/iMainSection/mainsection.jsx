@@ -23,7 +23,7 @@ export default class IMainSection extends React.Component {
     let routerParams = this.context.router.getCurrentParams();
     let routerPath = this.context.router.getCurrentPath();
 
-    if(routerParams.goId || routerPath.match('/go/')){
+    if(routerParams.goId || routerPath.match('/go/') || routerPath.match('/promo/')){
       className += ' mainSection--inactive';
     }
 

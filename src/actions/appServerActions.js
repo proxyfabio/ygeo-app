@@ -36,5 +36,12 @@ export default {
       data,
       actionType: ActionTypes.BANNER
     });
+  },
+
+  didGetBannerById(data) {
+    Dispatcher.handleServerAction({
+      data,
+      actionType: ActionTypes.BANNER_BY_ID
+    });
   }
 };

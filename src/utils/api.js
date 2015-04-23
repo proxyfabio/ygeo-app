@@ -95,5 +95,16 @@ export default {
 			.end(requestMiddleware.parseXHRResponse(function(data) {
 				ServerActions.didGetBanner(data.resp.object);
 			}));
+	},
+
+	getBannerById(params) {
+		params['pub_action'] = 'banner';
+
+		xhr('post', Env.connectors)
+			.type('form')
+			.send(params)
+			.end(requestMiddleware.parseXHRResponse(function(data) {
+				ServerActions.didGetBannerById(data.resp.object);
+			}));
 	}
 };

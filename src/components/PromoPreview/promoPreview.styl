@@ -1,0 +1,46 @@
+height = 550px
+
+.promoPanel__close
+	position absolute
+	top 0
+	right 0
+	z-index 500
+	width 48px
+	height 48px
+	background url(../../images/cross.png) no-repeat
+	cursor pointer
+
+.promoPanel
+	width 672px
+	height height
+	position absolute
+	top 360px
+	left 48px
+	z-index 600
+	background-color #fff
+	font-size 16px
+	color #333333
+	padding 48px 0 0 0
+	box-shadow 0 0 178px -20px #000
+
+	&__content
+		width 554px
+		height auto
+		overflow hidden
+		padding-bottom 35px
+
+	& .gm-scrollbar-container
+		transition opacity 1s ease
+		opacity 1
+		height height
+		padding-bottom 30px
+		padding-top 0
+
+	& .gm-scroll-view
+		transition opacity 1s ease
+		opacity 1
+		height height !important
+		overflow overlay
+		padding-top 0
+		box-sizing border-box
+		border-bottom 25px solid #fff // : )
