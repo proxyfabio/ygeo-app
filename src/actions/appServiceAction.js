@@ -1,4 +1,6 @@
 import MapService from '../helpers/mapService.js';
+import Dispatcher from '../core/dispatcher.js';
+import ActionTypes from '../constants/actions.js';
 
 export default {
 	renderGeoObjectCollection(data) {
@@ -20,10 +22,34 @@ export default {
 		});
   },
 
-	renderActiveRoute(data) {
+	renderActiveRoute(data, router) {
 		let map = new MapService();
+		let match = router.getCurrentPath();
+		let params = {};
+
+		if(match.match(/walk/) || match.match(/bus/)){
+			params.routingMode = 'masstransit';
+		}else{
+			params.routingMode = 'auto';
+		}
+
 		if (data) {
-			map.flushMapByGOName('multiRoute').renderRoute(data);
+			map.flushMapByGOName('multiRoute').renderRoute(data, params, (route) => {
+				route.events.add('activeroutechange', function(){
+						route.getRoutes().each((el) => {
+							if(el.options.getName() !== 'activeRoute'){
+								return;
+							}
+							// else
+							Dispatcher.handleViewAction({
+								data: el.properties.get('duration'),
+								actionType: ActionTypes.ROUTE_SET_ACTIVE
+							});
+
+						});
+					}
+				);
+			});
 		} else {
 			map.flushMapByGOName('multiRoute');
 			if (__DEV__) {

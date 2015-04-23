@@ -77,7 +77,7 @@ export default class mapService {
     return this;
   }
 
-  renderRoute(routeData) {
+  renderRoute(routeData, params, callback) {
     var refPoints = [];
     routeData = JSON.parse(routeData);
 
@@ -88,7 +88,7 @@ export default class mapService {
     let multiRoute = new ymaps.multiRouter.MultiRoute({
       referencePoints: refPoints,
       params: {
-        routingMode: 'masstransit'
+        routingMode: params.routingMode
         // this doesn't work properly
         // TODO: should check this out
         // boundsAutoApply: true,
@@ -100,6 +100,10 @@ export default class mapService {
     });
 
     this.provider.geoObjects.add(multiRoute);
+
+    if(typeof callback === 'function'){
+      callback(multiRoute);
+    }
 
     return this;
   }

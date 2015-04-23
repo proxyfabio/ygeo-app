@@ -3,6 +3,7 @@ import './header.styl';
 import React from 'react';
 import IClock from '../iClock/iclock.jsx';
 import IWeather from '../iWeather/iWeather.jsx';
+import RouteInfo from '../RouteInformer/routeInformer.jsx';
 
 export default class Header extends React.Component {
   render() {
@@ -12,6 +13,7 @@ export default class Header extends React.Component {
           <IClock className="header__clock" Interval={30000} />
           <IWeather className="header__weather" Interval={1800000} />
         </section>
+        <RouteInfo className="routeInfo"/>
         <h1 className="header__title">Информационная система</h1>
       </header>
     );

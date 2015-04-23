@@ -36,7 +36,7 @@ export default React.createClass({
   componentDidUpdate: function(prevProps, prevState) {
     // if route is handled
     handleRoute.call(this, this.context.router, () => {
-      Actions.renderActiveRoute(routesStore.getState().get(this.context.router.getCurrentParams().rId));
+      Actions.renderActiveRoute(routesStore.getState().get(this.context.router.getCurrentParams().rId), this.context.router);
     });
   },
 
