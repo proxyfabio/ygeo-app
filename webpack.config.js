@@ -19,7 +19,7 @@ module.exports = {
     loaders: [{
       test: /\.js.*$/,
       exclude: /node_modules/,
-      loaders: ['babel-loader']
+      loaders: ['babel-loader?optional=runtime']
     }, {
       test: /\.(png)$/,
       loader: 'url?name=[name].[ext]'
