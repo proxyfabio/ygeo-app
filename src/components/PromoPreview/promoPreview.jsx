@@ -45,7 +45,7 @@ export default class Promo extends React.Component {
 
 	render(){
 		let ns = 'promoPanel';
-    return <section className={ns}>
+    return <section className={ns + ' slideRight'}>
 			<div className={this.addClass('__close', ns)} onClick={this.handleClosePromo.bind(this)}></div>
 			<Scrollbar>
 				<div className={this.addClass('__content', ns)} dangerouslySetInnerHTML={{__html: String(this.state.content || '')}}></div>
