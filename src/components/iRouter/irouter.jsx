@@ -17,6 +17,7 @@ export default (
     <Route name='route' path="/route/:rId"></Route>
 
     <Route name='search' path={routeNames.search} handler={iSearch}></Route>
+    <Route name='searchMap' path="/map/:ids"></Route>
 
     <Route name='promo' path={promoRoute} handler={PromoPreview}></Route>
   </Route>

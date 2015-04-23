@@ -56,5 +56,17 @@ export default {
 				console.warn('empty route');
 			}
 		}
+	},
+
+	renderManyObjects(data) {
+		let map = new MapService();
+		let list = [];
+		require('../helpers/globalData.js').Places.results.map((el) => {
+			if(data.indexOf(el.id) !== -1){
+				list.push(el);
+			}
+		});
+		map.flushMap().renderGeoObjects(list);
+		this.showTerminal(require('../helpers/globalData.js').Terminal);
 	}
 };

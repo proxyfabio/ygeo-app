@@ -19,6 +19,10 @@ export default React.createClass({
     };
   },
 
+  componentDidMount() {
+    animateRef.call(this, 'search', 100, ['absolute', 'slideDown']);
+  },
+
   shouldSearch(query) {
     Actions.searchGeoObject(query);
   },
@@ -33,16 +37,34 @@ export default React.createClass({
     });
   },
 
+  shouldSelectMany() {
+    let ids = [];
+    this.mapState(function(el){
+      ids.push(el.id);
+    });
+    if(!ids.length){
+      return;
+    }
+    this.context.router.transitionTo('/map/:ids', {ids: ids.join(',')});
+  },
+
+  shouldClose() {
+    this.context.router.transitionTo('/');
+  },
+
   mapState(predicate){
     SearchGOsStore.getState().map((el) => {
       predicate(el);
     });
   },
 
-  componentDidMount() {
-    Actions.clickKeybordButton('');
-
-    animateRef.call(this, 'search', 100, ['absolute', 'slideDown']);
+  shouldComponentUpdate(nextProps, nextState) {
+    if(this.state.entryValue === nextState.entryValue){
+      return false;
+    }
+    // else
+    this.shouldSearch({query: this.state.entryValue});
+    return true;
   },
 
   componentWillMount() {
@@ -53,15 +75,8 @@ export default React.createClass({
   componentWillUnmount() {
     SearchGOsStore.removeChangeListener(this.onChange);
     searchStore.removeChangeListener(this.onChange);
-    // this.setState({
-    //   options: []
-    // });
   },
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(this.state, nextState);
-    return true;
-  },
 
   onChange(){
     var options = [];
@@ -70,14 +85,10 @@ export default React.createClass({
       options.push(el.text);
     });
 
-    console.log(this.state);
-
     this.setState({
       entryValue: searchStore.getState(),
       options: options
     });
-
-    console.log(this.state);
   },
 
   render(){
@@ -87,7 +98,9 @@ export default React.createClass({
         options={this.state.options}
         entryValue={this.state.entryValue}
         onFormSubmit={this.shouldSearch}
+        onFormClose={this.shouldClose}
         onOptionSelect={this.shouldSelect}
+        onManyOptionsSelect={this.shouldSelectMany}
       />
     </section>;
   }

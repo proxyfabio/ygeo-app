@@ -1,31 +1,14 @@
 import React from 'react';
 import './searchform.styl';
-import Alert from '../../utils/alert.js';
 import Typeahead from 'react-typeahead/lib/typeahead/index.js';
-import IKeyboard from '../iKeyboard/ikeyboard.jsx';
-import searchStore from '../../stores/searchStore.js';
-import SearchGOsStore from '../../stores/searchGeoObjectsStore.js';
+import Keyboard from '../Keyboard/keyboard.jsx';
+import Actions from '../../actions/appViewActions.js';
 import {animateRef} from '../../helpers/animationHelpers.js';
 
 export default class Search extends React.Component {
 
-  handleEachKey(e){
-    let codes = [39, 37, 124, 8];
-    if(codes.indexOf(e.keyCode) === -1){
-      this.handleSubmit(e);
-    }
-  }
-
-  handleSubmit(e){
-    let data = {
-      query: this.getTypeaheadValue()
-    };
-
-    this.props.onFormSubmit(data);
-
-    if(e && e.keyCode === 13){
-      e.preventDefault();
-    }
+  componentDidMount() {
+    animateRef.call(this, 'form', 400, ['block', 'slideUp']);
   }
 
   handleOptionSelect(){
@@ -40,28 +23,51 @@ export default class Search extends React.Component {
     return this.getTypeaheadInstance().refs.entry.getDOMNode().value;
   }
 
-  componentDidMount() {
-    animateRef.call(this, 'form', 400, ['block', 'slideUp']);
+  handleButtonClick(e){
+    let value = e.target.value;
+    switch(value){
+      // esc
+      case 27:
+        this.props.onFormClose();
+        break;
+      case 13:
+        this.props.onManyOptionsSelect();
+        break;
+      // space
+      case 32:
+      // backspace
+      case 8:
+      // else
+      default:
+        Actions.clickKeybordButton(value);
+        break;
+    }
+
   }
 
   render(){
-    return <form ref="form" method="post" onSubmit={this.handleSubmit.bind(this)} className="quickSearch__section">
+    return <form ref="form" method="post" className="quickSearch__section">
       <Typeahead
         ref="query"
         name="query"
+        maxVisible={4}
         className='typeahead'
         options={this.props.options}
         entryValue={this.props.entryValue}
-        onEnter={this.handleSubmit.bind(this)}
-        onEachKey={this.handleEachKey.bind(this)}
         onOptionSelected={this.handleOptionSelect.bind(this)}
       />
-    <IKeyboard onEnterClick={this.handleSubmit.bind(this)}/>
+      <section className="keyboard">
+        <Keyboard
+          className="keyboard__section"
+          onButtonClick={this.handleButtonClick.bind(this)}
+        />
+      </section>
     </form>;
   }
 }
 
 Search.propTypes = {
-  onFormSubmit: React.PropTypes.func,
-  Options: React.PropTypes.array
+  Options: React.PropTypes.array,
+  onManyOptionsSelect: React.PropTypes.func,
+  onFormClose: React.PropTypes.func
 };

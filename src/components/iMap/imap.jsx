@@ -16,9 +16,21 @@ function handleRoute(router, callback){
   }
 }
 
+function handleManyObjects() {
+  let ids = this.context.router.getCurrentParams().ids;
+  if(this.context.router && ids){
+    Actions.renderManyObjects(ids);
+  }
+}
+
 export default React.createClass({
   contextTypes: {
     router: React.PropTypes.func
+  },
+
+  componentDidMount() {
+    // if map route
+    handleManyObjects.call(this);
   },
 
   componentWillMount() {
@@ -38,6 +50,8 @@ export default React.createClass({
     handleRoute.call(this, this.context.router, () => {
       Actions.renderActiveRoute(routesStore.getState().get(this.context.router.getCurrentParams().rId), this.context.router);
     });
+    // if map route
+    handleManyObjects.call(this);
   },
 
   render(){

@@ -76,9 +76,9 @@ export default class IMediaSlider extends React.Component {
       ].join(' ');
     }
 
-    let name = media[active - 1].name;
-    if(name){
-      name = <div className="slider__name">{name}</div>;
+    let name = media[active - 1];
+    if(name && name.name){
+      name = <div className="slider__name">{name.name}</div>;
     }
 
     return <section className="slider">
