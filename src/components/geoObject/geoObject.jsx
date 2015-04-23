@@ -28,7 +28,7 @@ export default class geoObject extends React.Component {
       <div className={ns + '__header'}>
         <div ref="title" className={ns + '__title none'}>
           {longtitle || pagetitle}
-          <span className={ns + '__address'}>{address}</span>
+          <span className={ns + '__address'} dangerouslySetInnerHTML={{__html: String(address || '')}}></span>
         </div>
       </div>
 
@@ -41,12 +41,12 @@ export default class geoObject extends React.Component {
 
         <div ref="info" className={ns + '__info'}>
           <div className={ns + '__dest'}>
-            <span className={ns + '__h'}>{address}</span>
-            {phone}
+            <span className={ns + '__h'} dangerouslySetInnerHTML={{__html: String(address || '')}}></span>
+            <div dangerouslySetInnerHTML={{__html: String(phone || '')}}></div>
           </div>
           <div className={ns + '__time'}>
-            <span className={ns + '__h'}>{schedule_time}</span>
-            {schedule}
+            <span className={ns + '__h'} dangerouslySetInnerHTML={{__html: String(schedule_time || '')}}></span>
+            <div dangerouslySetInnerHTML={{__html: String(schedule || '')}}></div>
           </div>
         </div>
 
