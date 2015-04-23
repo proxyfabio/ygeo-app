@@ -5,10 +5,13 @@ import Dispatcher from '../core/dispatcher.js'
 import ActionTypes from '../constants/actions.js'
 import i from 'immutable'
 
-var iStore = new (i.Record({go: null, id: null}))();
+var iStore = new (i.Record({go: null, id: 0}))();
 
 class CartStore extends Store{
   getGOStore(){
+    return iStore;
+  }
+  getState(){
     return iStore;
   }
 }

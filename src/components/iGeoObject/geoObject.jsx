@@ -3,6 +3,7 @@ import React from 'react';
 import Actions from '../../actions/appViewActions.js';
 import GOStore from '../../stores/geoObjectStore.js';
 import GO from '../geoObject/geoObject.jsx';
+import mediaItemsStore from '../../stores/mediaItemsStore.js';
 
 function changeGO(id) {
   Actions.getGeoObject(id);
@@ -18,16 +19,16 @@ let GeoObject = React.createClass({
   },
 
   getInitialState() {
-    let store = GOStore.getGOStore();
+    let state = GOStore.getState();
     return {
-      id: store.get('id') || null,
-      go: store.get('go') || null
+      id: Number(state.get('id')),
+      go: state.get('go')
     };
   },
 
   shouldComponentUpdate(nextProps, nextState) {
-    if(this.state.id === nextState.id){
-      changeGO.call(this, getRouterParam.call(this, 'goId'));
+    if(this.state.id !== nextState.id){
+      changeGO.call(this, nextState.id);
       return false;
     }
     return true;
@@ -38,25 +39,29 @@ let GeoObject = React.createClass({
     if(nextId && nextId !== this.state.id){
       changeGO.call(this, nextId);
     }
+  },
 
+  componentWillMount: function() {
+    mediaItemsStore.addChangeListener(this.onChange);
     GOStore.addChangeListener(this.onChange);
   },
 
   componentWillUnmount: function() {
+    mediaItemsStore.removeChangeListener(this.onChange);
     GOStore.removeChangeListener(this.onChange);
   },
 
   onChange() {
     let store = GOStore.getGOStore();
     this.setState({
-      'id': store.get('id'),
-      'go': store.get('go')
+      id: Number(store.get('id')),
+      go: store.get('go')
     });
   },
 
   render () {
     return <section className='geoObject'>
-      <GO Data={this.state.go} />
+      <GO Data={this.state.go} media={mediaItemsStore.getState()} />
     </section>;
   }
 });

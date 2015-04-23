@@ -13,6 +13,7 @@ class MediaItemsStore extends Store {
 	}
 
 	getItem(id) {
+		console.log(iState);
 		return iState.get(id)[mode];
 	}
 
