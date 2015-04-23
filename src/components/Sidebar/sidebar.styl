@@ -22,24 +22,32 @@
       margin 0 0 2px
 
       &:after
-        display: block;
-        content: " ";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-        opacity: .8;
-        z-index: 0;
-        transition: all 0.2s ease;
-        -webkit-transition: all 0.2s ease;
-        -moz-transition: all 0.2s ease;
-        -o-transition: all 0.2s ease;
+        display block
+        content " "
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 100%
+        background-color #fff
+        opacity .8
+        z-index 0
+        transition all 0.2s ease
+        -webkit-transition all 0.2s ease
+        -moz-transition all 0.2s ease
+        -o-transition all 0.2s ease
 
       &--active
         &.legend__category:after
           opacity 1
+
+        &.legend__category:before
+          content ' '
+          position absolute
+          width 4px
+          height 100%
+          z-index 100
+          background-color #1e7300
 
     &__link
       color #000
@@ -58,16 +66,16 @@
 
     &__search
       .legend__ico
-        display: block;
+        display block
         background-image url(../../images/ico_1.png)
-        float: left;
-        margin: 15px 16px 0 24px;
-        width: 48px;
-        height: 48px;
-        border: none !important
+        float left
+        margin 15px 16px 0 24px
+        width 48px
+        height 48px
+        border none !important
 
       &:after
-        background-color: #1e7300;
+        background-color #1e7300
 
       a
         color #fff
