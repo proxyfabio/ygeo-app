@@ -80,7 +80,7 @@ class MediaItemsStore extends Store {
 					break;
 			}
 			return {
-				type, value
+				type, value, name: el.name
 			};
 		});
 	}

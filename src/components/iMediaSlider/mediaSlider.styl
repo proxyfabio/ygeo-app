@@ -14,6 +14,30 @@
     height inherit
     text-align center
 
+  .slider__name
+    position absolute
+    top 0
+    left 0
+    width auto
+    height auto
+    color #fff
+    z-index 600
+    font-family 'HeliosCondC-Bold'
+    padding 10px 20px
+    font-size 30px
+
+    &:before
+      display block
+      content " "
+      position absolute
+      top 0
+      left 0
+      width 100%
+      height 100%
+      z-index 0
+      background-color #000
+      opacity .5
+
   .slider__ruler
     cursor pointer
     position absolute

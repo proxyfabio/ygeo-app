@@ -76,9 +76,15 @@ export default class IMediaSlider extends React.Component {
       ].join(' ');
     }
 
+    let name = media[active - 1].name;
+    if(name){
+      name = <div className="slider__name">{name}</div>;
+    }
+
     return <section className="slider">
       {left}
       <ReactCSSTransitionGroup className="slider__wrapper" transitionName="example">
+        {name}
         <MediaItem className="slider__item" key={active} id={active} item={media[active - 1]}/>
       </ReactCSSTransitionGroup>
       {right}
