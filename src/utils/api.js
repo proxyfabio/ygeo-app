@@ -44,7 +44,7 @@ export default {
 
 				if (status === 200 && statusText === 'OK') {
 					let resp = JSON.parse(text);
-					ServerActions.didSearchGeoObjects(resp);
+					ServerActions.didSearchGeoObjects(resp, params);
 				}
 			});
 	},

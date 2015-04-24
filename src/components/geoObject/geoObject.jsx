@@ -58,7 +58,7 @@ export default class geoObject extends React.Component {
         </div>
 
         <Scrollbar ref="content">
-          <div className={ns + '__content'} dangerouslySetInnerHTML={{__html: String(content)}}></div>
+          <div className={ns + '__content'} dangerouslySetInnerHTML={{__html: String(content || '')}}></div>
         </Scrollbar>
       </div>
     </section>;

@@ -10,9 +10,10 @@ export default {
     });
   },
 
-  didSearchGeoObjects(data) {
+  didSearchGeoObjects(data, params) {
     Dispatcher.handleServerAction({
       data: data.results,
+      params,
       actionType: ActionTypes.GO_SEARCH
     });
   },

@@ -40,13 +40,6 @@ export default {
     API.getWeather();
   }),
 
-  clickKeybordButton: ActionCreator.create(function(char) {
-    Dispatcher.handleViewAction({
-      data: {char},
-      actionType: ActionTypes.KEYBOARD_CLICKBUTTON
-    });
-  }),
-
   getBanner: ActionCreator.create(function (params) {
     API.getBannerById(params);
   }),

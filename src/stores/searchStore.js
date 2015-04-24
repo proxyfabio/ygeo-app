@@ -3,6 +3,7 @@
 import Store from '../core/store.js';
 import Dispatcher from '../core/dispatcher.js';
 import ActionTypes from '../constants/actions.js';
+import SearchGOStore from './searchGeoObjectsStore.js';
 
 var iState = '';
 class SearchStore extends Store {
@@ -17,21 +18,10 @@ searchStore.dispatchToken = Dispatcher.register(function(payload) {
   let action = payload.action;
   switch (action.actionType) {
 
-    case ActionTypes.KEYBOARD_CLICKBUTTON:
-
-			switch(action.data.char){
-				case 8:
-					iState = '';
-					break;
-				case 32:
-					iState += ' ';
-					break;
-				default:
-					iState += String.fromCharCode(action.data.char);
-					break;
-			}
-
-      searchStore.emitChange(action.data.char);
+    case ActionTypes.GO_SEARCH:
+      Dispatcher.waitFor([SearchGOStore.dispatchToken]);
+      iState = action.params.query;
+      searchStore.emitChange();
       break;
   }
 

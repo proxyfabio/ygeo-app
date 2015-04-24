@@ -23,10 +23,6 @@ export default React.createClass({
     animateRef.call(this, 'search', 100, ['absolute', 'slideDown']);
   },
 
-  shouldSearch(query) {
-    Actions.searchGeoObject(query);
-  },
-
   shouldSelect(query) {
     let router = this.context.router;
 
@@ -58,25 +54,13 @@ export default React.createClass({
     });
   },
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if(this.state.entryValue === nextState.entryValue){
-      return false;
-    }
-    // else
-    this.shouldSearch({query: this.state.entryValue});
-    return true;
-  },
-
   componentWillMount() {
-    SearchGOsStore.addChangeListener(this.onChange);
     searchStore.addChangeListener(this.onChange);
   },
 
   componentWillUnmount() {
-    SearchGOsStore.removeChangeListener(this.onChange);
     searchStore.removeChangeListener(this.onChange);
   },
-
 
   onChange(){
     var options = [];

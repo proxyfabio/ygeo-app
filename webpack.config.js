@@ -25,7 +25,7 @@ module.exports = {
       loader: 'url?name=[name].[ext]'
     }, {
       test: /\.styl$/,
-      loader: 'style-loader!css-loader!stylus-loader'
+      loader: 'style-loader!css-loader!stylus-loader?sourceMap=true'
     }, {
       test: /\.css$/,
       loader: 'style-loader!css-loader!url-loader'

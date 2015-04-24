@@ -3,6 +3,8 @@ import './sidebar.styl';
 import React from 'react';
 import MapLegendSection from '../MapLegendSection/mapLegendSection.jsx';
 import Actions from '../../actions/appViewActions.js';
+import GeoObjectsList from '../geoObjectsList/geoObjectsList.jsx';
+import ActiveGOStore from '../../stores/activeGeoObjectsStore.js';
 import {Link} from 'react-router';
 
 export default class Sidebar extends React.Component {
@@ -38,6 +40,9 @@ export default class Sidebar extends React.Component {
     });
 
     return <aside className="sidebar">
+
+      <GeoObjectsList list={ActiveGOStore.getState().toArray()} />
+
       <nav className="legend">
         <ul className="legend__wrapper">
           <li className="legend__item legend__search">

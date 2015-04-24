@@ -25,6 +25,10 @@ export default class Search extends React.Component {
 
   handleButtonClick(e){
     let value = e.target.value;
+    let processedValue = String.fromCharCode(value);
+    let oldValue = this.refs.query.refs.entry.getDOMNode().value;
+    let newValue = '';
+    
     switch(value){
       // esc
       case 27:
@@ -33,15 +37,21 @@ export default class Search extends React.Component {
       case 13:
         this.props.onManyOptionsSelect();
         break;
-      // space
-      case 32:
       // backspace
       case 8:
+        // newValue = oldValue.slice(0, -1);
+        newValue = ' ';
+        break;
+      // space
+      case 32:
       // else
       default:
-        Actions.clickKeybordButton(value);
+        newValue = oldValue + processedValue;
         break;
     }
+
+    this.refs.query.setEntryText(newValue);
+    Actions.searchGeoObject({query: newValue});
 
   }
 

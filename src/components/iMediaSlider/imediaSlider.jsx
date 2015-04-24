@@ -56,7 +56,7 @@ export default class IMediaSlider extends React.Component {
 
   render(){
     if(!this.props.id){
-      return <section></section>;
+      return false;
     }
 
     let media = this.getMedia(this.props.media);
@@ -76,11 +76,14 @@ export default class IMediaSlider extends React.Component {
       ].join(' ');
     }
 
-    let name = media[active - 1];
-    if(name && name.name){
-      name = <div className="slider__name">{name.name}</div>;
+    let mediaItem = media[active - 1];
+    let name;
+    if(mediaItem && mediaItem.name){
+      name = <div className="slider__name">{mediaItem.name}</div>;
+    }else{
+      name = <div/>;
     }
-
+    
     return <section className="slider">
       {left}
       <ReactCSSTransitionGroup className="slider__wrapper" transitionName="example">
