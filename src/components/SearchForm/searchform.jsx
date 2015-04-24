@@ -28,7 +28,7 @@ export default class Search extends React.Component {
     let processedValue = String.fromCharCode(value);
     let oldValue = this.refs.query.refs.entry.getDOMNode().value;
     let newValue = '';
-    
+
     switch(value){
       // esc
       case 27:
@@ -60,7 +60,7 @@ export default class Search extends React.Component {
       <Typeahead
         ref="query"
         name="query"
-        maxVisible={4}
+        maxVisible={8}
         className='typeahead'
         options={this.props.options}
         entryValue={this.props.entryValue}

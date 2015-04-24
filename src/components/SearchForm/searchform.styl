@@ -51,6 +51,7 @@
     .typeahead
       & input[type="text"]
         width 80%
+        position relative
         display block
         margin 0 auto
         height 170px
@@ -62,15 +63,23 @@
         text-transform capitalize
         outline none
 
+      & .typeahead-selector
+        display: block;
+        left: 48px;
+        list-style: none;
+        position absolute
+        top: -230px;
+        width: 400px;
+
+
       & .typeahead-selector a
         display block
         color #fff
-        font-size 22px
+        font-size 18px
         font-family 'HeliosCondLightC'
         text-align left
         letter-spacing normal
         text-decoration none
-        text-align center
         padding-bottom 10px
 
       & .typeahead-selector li
