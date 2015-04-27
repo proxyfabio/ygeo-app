@@ -60,6 +60,7 @@ export default class MediaItem extends React.Component {
         height = 504;
         item = <video
           id={id}
+          key={id}
           ref={id}
           controls
           height={height}
@@ -74,6 +75,7 @@ export default class MediaItem extends React.Component {
         id = [prefix, this.props.id].join('');
         item = <video
           id={id}
+          key={id}
           ref={id}
           controls
           height={height}

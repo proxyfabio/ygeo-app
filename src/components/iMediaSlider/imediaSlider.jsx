@@ -83,8 +83,8 @@ export default class IMediaSlider extends React.Component {
     }else{
       name = <div/>;
     }
-    
-    return <section className="slider">
+
+    return <section key={active} className="slider">
       {left}
       <ReactCSSTransitionGroup className="slider__wrapper" transitionName="example">
         {name}

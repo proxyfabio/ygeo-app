@@ -5,9 +5,7 @@ export default function(callback) {
     window.currentMap = new ymaps.Map('map', {
       center: [56.337042, 36.725815],
       zoom: 12,
-      controls: [
-        'zoomControl'
-      ]
+      controls: []
     }, {
       adjustZoomOnTypeChange: true
       // restrictMapArea: true

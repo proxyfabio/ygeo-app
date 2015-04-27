@@ -34,7 +34,7 @@ export default class Sidebar extends React.Component {
       }
       _groups[el.category].items.push(el);
       _groups[el.category].id = el.category_id;
-      _groups[el.category].icon = el.category_icon;
+      _groups[el.category].legend_icon_active = el.legend_icon_active;
       _groups[el.category].legend_icon = el.legend_icon;
 
     });
@@ -51,15 +51,16 @@ export default class Sidebar extends React.Component {
               Найти
             </Link>
           </li>
-          {Object.keys(_groups).map(function(key){
+          {Object.keys(_groups).map(function(key,i){
             let sectionId = _groups[key].id;
             let active = this.state.list.indexOf(sectionId) !== -1 ? ' legend__item--active' : '';
 
             return <MapLegendSection
-              key={key}
+              key={i}
               sectionName={key}
               active={active}
               icon={_groups[key].legend_icon}
+              activeIcon={_groups[key].legend_icon_active || ''}
               onCategoryClick={this.handleCategoryClick.bind(this, sectionId)}
               />;
           }, this)}

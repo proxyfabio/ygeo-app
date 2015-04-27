@@ -2,21 +2,27 @@
 	position absolute
 	height 314px
 	width 100%
-	bottom 0
+	// bottom 0
+	top 200px
 	left 0
-	z-index 500
-	-webkit-transition bottom .7s linear
-	transition bottom .7s linear
+	// z-index 500
+	z-index 300px
+	-webkit-transition top .7s linear
+	transition top .7s linear
 
 	&.off
 	& .off
-		bottom -314px
+		top -314px
 
 	&__close
 		position absolute
-		top 0
-		right 0
-		z-index 500
+		// top 0
+		// right 0
+		// left 0
+		bottom: 0;
+		right: 0;
+		z-index: 10;
+		// z-index 500
 		width 48px
 		height 48px
 		background url(../../images/cross.png) no-repeat
@@ -35,6 +41,10 @@
 		color #fff
 		z-index 600
 		font-family 'HeliosCondC-Bold'
+
+		&.inactive
+			&:after
+				display none
 
 		&:after
 			display block
