@@ -10,8 +10,8 @@ export default class Header extends React.Component {
     return (
       <header className="header">
         <section className="header__row">
-          <IClock className="header__clock" Interval={30000} />
-          <IWeather className="header__weather" Interval={1800000} />
+          <IClock className="header__clock" Interval={59000} />
+          <IWeather className="header__weather" Interval={600000} />
         </section>
         <RouteInfo className="routeInfo"/>
         <h1 className="header__title">Информационная система</h1>

@@ -56,7 +56,7 @@ export default class Search extends React.Component {
     }
 
     this.refs.query.setEntryText(newValue);
-    if(newValue.length % 2 === 0){
+    if(newValue.length % 3 === 0){
       Actions.searchGeoObject({query: newValue});
     }
 

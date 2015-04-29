@@ -31,7 +31,7 @@ export default class Promo extends React.Component {
 
 		setInterval(function(){
 			Action.getActualBanner(data);
-		}, 10000);
+		}, this.props.interval);
 
 		setInterval(function(){
 			this.setState({visibility:true});

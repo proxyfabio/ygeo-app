@@ -18,7 +18,7 @@ export default class IKeyboard extends React.Component {
 			case 8:
 			// else
 			default:
-				if(value.length % 2 === 0){
+				if(value.length % 3 === 0){
 					Actions.clickKeybordButton(value);
 				}
 				break;

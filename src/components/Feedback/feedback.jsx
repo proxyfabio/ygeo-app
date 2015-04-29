@@ -35,7 +35,6 @@ export default React.createClass({
 					name: this.refs.userName.getDOMNode().value,
 					text: this.refs.userText.getDOMNode().value
 				});
-				console.log(234);
 				break;
 			// backspace
 			case 8:
@@ -48,7 +47,7 @@ export default React.createClass({
 				newValue = oldValue + processedValue;
 				break;
 		}
-		if(this.state.activeNode && value !== 13 && newValue.length % 2 === 0){
+		if(this.state.activeNode && value !== 13 && newValue.length % 3 === 0){
 			this.state.activeNode.value = newValue;
 		}
 	},

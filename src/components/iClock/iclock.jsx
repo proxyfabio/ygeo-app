@@ -5,13 +5,13 @@ import timeStore from '../../stores/timeStore.js';
 export default class Clock extends React.Component {
   constructor(props){
     super(props);
-
     this.state = {
       unixtime: (new Date()).getTime()
     };
 
     setInterval(() => {
-      Actions.getTime();
+      // Actions.getTime();
+      this.setState({unixtime: (new Date()).getTime()});
     }, this.props.Interval);
   }
 

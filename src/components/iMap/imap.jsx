@@ -65,7 +65,7 @@ export default React.createClass({
 
     return <section className="map">
       <Map className={styles}/>
-      <Promo/>
+      <Promo interval={5 * 60 * 1000}/>
     </section>;
   }
 });
