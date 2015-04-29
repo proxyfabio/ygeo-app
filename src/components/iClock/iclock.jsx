@@ -16,7 +16,7 @@ export default class Clock extends React.Component {
   }
 
   parseUnixTime(time){
-    return (new Date(time)).toLocaleTimeString().replace(/:\d*$/, '');
+    return (new Date(time)).toTimeString().replace(/:\d{2}\s.*/, '');
   }
 
   componentWillMount() {

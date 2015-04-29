@@ -4,6 +4,7 @@ import Typeahead from 'react-typeahead/lib/typeahead/index.js';
 import Keyboard from '../Keyboard/keyboard.jsx';
 import Actions from '../../actions/appViewActions.js';
 import {animateRef} from '../../helpers/animationHelpers.js';
+import Env from '../../constants/env.js';
 
 export default class Search extends React.Component {
 
@@ -50,8 +51,14 @@ export default class Search extends React.Component {
         break;
     }
 
+    if(newValue === Env.egg){
+      this.context.router.transitionTo('/egg/');
+    }
+
     this.refs.query.setEntryText(newValue);
-    Actions.searchGeoObject({query: newValue});
+    if(newValue.length % 2 === 0){
+      Actions.searchGeoObject({query: newValue});
+    }
 
   }
 
@@ -80,4 +87,8 @@ Search.propTypes = {
   Options: React.PropTypes.array,
   onManyOptionsSelect: React.PropTypes.func,
   onFormClose: React.PropTypes.func
+};
+
+Search.contextTypes = {
+  router: React.PropTypes.func
 };

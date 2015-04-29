@@ -48,7 +48,7 @@ export default React.createClass({
 				newValue = oldValue + processedValue;
 				break;
 		}
-		if(this.state.activeNode && value !== 13){
+		if(this.state.activeNode && value !== 13 && newValue.length % 2 === 0){
 			this.state.activeNode.value = newValue;
 		}
 	},
