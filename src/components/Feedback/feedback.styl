@@ -1,0 +1,58 @@
+@import "~lost-grid/stylus/lost.styl"
+.feedback
+	position absolute
+	top 0
+	left 0
+	width 100%
+	height 100%
+	z-index 200
+
+	&:after
+		display block
+		content ' '
+		position absolute
+		top 0
+		left 0
+		width 100%
+		height 100%
+		background-color #1e7300
+		z-index 0
+		opacity .8
+
+	&__label
+		color #fff
+		border: 0
+		display: block
+		font-size: 55px
+		height: 80px
+		margin: 0 auto
+		outline: none
+		position: relative
+		text-align: left
+		width: 80%
+		font-family: 'HeliosCondC', Helvetica, sans-serif
+
+	&__section
+		// margin 100px auto
+		width 100%
+		position relative
+		top 505px
+		z-index 10
+
+		& textarea
+		& input
+			background-color: #fff
+			border: 0
+			display: block
+			font-size: 64px
+			height: 80px
+			margin: 0 auto 45px
+			outline: none
+			position: relative
+			text-align: left
+			width: 80%
+			font-family: 'HeliosCondC', Helvetica, sans-serif
+
+		& textarea
+			height 320px
+			resize none

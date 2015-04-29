@@ -97,6 +97,7 @@ export default class IMediaSlider extends React.Component {
           className={getActiveClass.call(this, 'photo')}
           >Фото</a>
         <a href="javascript:void(0)"
+          style={{"display":"none"}}
           onClick={this.switchToVideo.bind(this)}
           className={getActiveClass.call(this, 'video')}
           >Видео</a>

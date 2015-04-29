@@ -53,5 +53,9 @@ export default {
       data: params,
       actionType: ActionTypes.CHANGE_SLIDER_MEDIATYPE
     });
+  }),
+
+  sendFeedback: ActionCreator.create(function(params){
+    API.sendFeedback(params);
   })
 };

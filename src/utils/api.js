@@ -106,5 +106,22 @@ export default {
 			.end(requestMiddleware.parseXHRResponse(function(data) {
 				ServerActions.didGetBannerById(data.resp.object);
 			}));
+	},
+
+	sendFeedback(params) {
+		params['pub_action'] = 'feedback';
+
+		xhr('post', Env.connectors)
+			.type('form')
+			.send(params)
+			.end(requestMiddleware.parseXHRResponse(function(data) {
+				if(data.resp.success){
+					console.log(data);
+					document.querySelector('.userName').value = '';
+					document.querySelector('.userText').value = '';
+				}else{
+					alert(data.resp.message);
+				}
+			}));
 	}
 };

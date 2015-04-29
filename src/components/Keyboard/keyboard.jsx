@@ -6,8 +6,8 @@ export default class Keyboard extends React.Component {
 
 	renderButtonSequence(seq, className){
 		return seq.map((el, i) => {
-			return <Button key={i} char={el} onClick={this.props.onButtonClick} className={'keyboard__button ' + className} />;
-		});
+			return <Button key={i} char={el} onClick={this.props.onButtonClick.bind(this)} className={'keyboard__button ' + className} />;
+		}, this);
 	}
 
 	render(){
@@ -21,15 +21,15 @@ export default class Keyboard extends React.Component {
 			{this.renderButtonSequence(symbols, ns + '__button--firstLine')}
 			<br/>
 			{this.renderButtonSequence(lettersLine1)}
-			<Button char={8} value="Стереть" onClick={this.props.onButtonClick} className={ns + '__backspace ' + ns + '__button'} />
+			<Button char={8} value="Стереть" onClick={this.props.onButtonClick.bind(this)} className={ns + '__backspace ' + ns + '__button'} />
 			<br/>
 			{this.renderButtonSequence(lettersLine2)}
-			<Button char={13} value="Найти" onClick={this.props.onButtonClick} className={ns + '__enter ' + ns + '__button'} />
+			<Button char={13} value={this.props.enterName || 'Найти'} onClick={this.props.onButtonClick.bind(this)} className={ns + '__enter ' + ns + '__button'} />
 			<br/>
 			{this.renderButtonSequence(lettersLine3)}
-			<Button char={27} value="Закрыть" onClick={this.props.onButtonClick} className={ns + '__esc ' + ns + '__button'} />
+			<Button char={27} value="Закрыть" onClick={this.props.onButtonClick.bind(this)} className={ns + '__esc ' + ns + '__button'} />
 			<br/>
-			<Button char={32} onClick={this.props.onButtonClick} className={ns + '__space ' + ns + '__button'} />
+			<Button char={32} onClick={this.props.onButtonClick.bind(this)} className={ns + '__space ' + ns + '__button'} />
     </ul>;
   }
 }
