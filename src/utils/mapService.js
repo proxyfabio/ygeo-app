@@ -96,7 +96,7 @@ export default class mapService {
     });
 
     multiRoute.events.add('update', () => {
-      this.provider.setBounds(multiRoute.getBounds());
+      this.provider.setBounds(multiRoute.getBounds(), {checkZoomRange: true});
     });
 
     this.provider.geoObjects.add(multiRoute);
@@ -126,16 +126,18 @@ export default class mapService {
     function checkBounds(bounds) {
       var notEq = 0;
       bounds[0].map((el, i) => {
+        // if(el - bounds[1][i] <= 0.001){
         if(el === bounds[1][i]){
           notEq++;
         }
       });
+      console.log(bounds);
       return (notEq === bounds.length) ? false : true;
     }
 
     if(this.autoAdjustBounds){
       if(checkBounds(newBounds)){
-        this.provider.setBounds(newBounds);
+        this.provider.setBounds(newBounds, {checkZoomRange: true});
       }else{
         this.provider.setCenter([56.337042, 36.725815]);
         this.provider.setZoom(12);
