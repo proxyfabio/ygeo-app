@@ -59,6 +59,7 @@ export default {
 	},
 
 	renderManyObjects(data) {
+		data = data.split(',');
 		let map = new MapService();
 		let list = [];
 		require('../helpers/globalData.js').Places.results.map((el) => {
